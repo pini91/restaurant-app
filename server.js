@@ -1,0 +1,72 @@
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose")
+const passport = require("passport")
+const session = require("express-session") // is gonna handle a generating session id for us
+const MongoStore = require("connect-mongo")
+const methodOverride = require("method-override"); // we need this middleware so that we are able to override the method to (PUT/DELETE)
+const flash = require("express-flash")
+const logger = require("morgan"); //morgan is our logger or very simple kind of debugger. and what is showing us is our log here
+const connectDB = require("./config/database")
+const mainRoutes = require("./routes/main");
+const bookFormRoutes = require("./routes/bookForm");
+const editReservationRoutes = require("./routes/edit");
+const adminRoutes = require("./routes/admin");
+
+
+//Use .env file in config folder
+require("dotenv").config({ path: "./config/.env" });
+
+
+//passport config
+require("./config/passport")//(passport) 
+
+connectDB() // Here is where we are calling our function for connection to the database.
+
+//Using EJS for views
+app.set("view engine", "ejs");
+
+//Static Folder
+app.use(express.static("public"));
+// app.use(express.static(__dirname + '/public'));
+
+//body parsing -set up middleware
+
+app.use(express.urlencoded({ extended: true }))// this is just that we can grab every single part of the request been made.(input for example r grabbing a piece of word.)
+app.use(express.json())
+app.use(logger("dev"))
+//Use forms for put / delete
+app.use(methodOverride("_method"));
+app.use(  //we declare it after express.static, this sessions are gonna keep us logged in throughout different pages.
+  session({
+    secret: process.env.SECRET,
+    resave: true,
+    saveUninitialized: false, //  you wanna make sure its set to false if you have a login system, otherwise is gonna generate a new session id every single time they make a request to your server
+    store: MongoStore.create({ mongoUrl: process.env.DB_STRING }),
+    cookie:{
+      maxAge:1000 * 60 * 60 *24 // equals 1 day (1day *24hrs/1dday *60mi)
+    }
+  })
+)
+
+// Passport middleware
+//everytime we load a route these 2 middlewares are gonna work together
+//what they are gonna do is first gonna check to see is the user property is not null
+app.use(passport.initialize()) // This is kinda gonna rerun everything that we just did
+app.use(passport.session()) // has to do with the serialize and deserialize user, but more so it has to do with the actual express session middleware.
+// the request.session gives us access to the request that session object and anything that we store on the request.sessi
+
+app.use(flash())
+  
+
+app.use("/",mainRoutes)
+app.use("/bookForm",bookFormRoutes)
+app.use("/edit",editReservationRoutes) 
+app.use("/admin",adminRoutes) 
+
+
+//Server Running
+app.listen(process.env.PORT, () => {
+    console.log("Server is running, you better catch it!");
+  });
+  

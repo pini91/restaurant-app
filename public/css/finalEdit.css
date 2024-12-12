@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+
+body{
+    background-color: #faf5f5;
+}
+
+
+.container {
+position:relative;
+max-width: 400px;
+width: 100%;
+background: #fff;
+padding: 25px;
+border-radius: 8px;
+box-shadow: 0 0 15px rgba(5, 11, 88, 0.1);
+margin: 5%;
+margin-left: 37%;
+font-size: x-large;
+text-align: center;
+}
+
+button{
+    margin-top: 7%;
+    width: 60%;
+    height: 40px;
+    font-size: 1rem;
+    background: white;
+    border-color: rgb(243, 240, 240);
+    cursor: pointer;
+
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}

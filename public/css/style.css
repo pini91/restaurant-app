@@ -1,0 +1,324 @@
+*{
+    box-sizing: border-box;
+}
+
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+main{
+    height: 600px;
+    background-image: url(../imgs/fruit-salad.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment:scroll;
+    background-size: cover;
+    width:100%;
+    float: left;
+    clear: both;
+}
+
+main ul{
+    position: absolute;
+    right:5%;
+    margin: 2%;
+    width: fit-content;
+
+}
+
+main ul li{
+    display: inline;
+    padding: 10px;
+    font-weight:bolder;
+    font-size: larger;
+    cursor: pointer;
+}
+main ul li:hover{
+    color:lightgray;
+}
+
+main section{
+    float: start;
+    width: 30%;
+    margin-left: 4%;
+}
+
+main section h1{
+    padding-top: 40%;
+    font-size: 50px;
+    padding-bottom: 10%;
+}
+
+main section input{
+    margin-right: -2%;
+    width: 65%;
+}
+
+main section input,button{
+    height: 30px;
+}
+
+main div i{
+    padding: 30px 25px;
+    font-size: larger;
+}
+
+#hambi{
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    height: 45px;
+    width: 45px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.lineas{
+    height: 4px;
+    width: 100%;
+    background-color: black;
+    border-radius: 10px;
+}
+
+#discover{
+    height: 550px;
+    background-image: url(../imgs/elevated-view-fresh-healthy-breakfast-white-background_23-2147907017.avif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: scroll;
+    background-size: cover;
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.reservation {
+    cursor: pointer;
+}
+.reservation a{
+    text-decoration: none;
+    color: black;
+    padding-left: 5px;
+}
+
+#discover div{
+    float: right;
+    width: 40%;
+    text-align: justify;
+    margin-right: 7%;
+    margin-top: 5%;
+}
+
+#discover div *{
+    padding-bottom: 30px;
+}
+
+#discover div span{
+    color: orange;
+    font-weight: bold;
+    font-size: larger;
+    padding-bottom: 20px;
+}
+
+#discover button{
+    background-color: darkorange;
+    border-radius: 5px;
+    height: 10px;
+    width: 35%;
+    text-align: start;
+    padding-top: 17px;
+    padding-left: 3%;
+    font-size: larger;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+#speciality{
+    float: left;
+    height: 900px;
+    background-color: lightgray;
+    width: 100%;
+    text-align: center;
+}
+
+#speciality span{
+    color: orange;
+    font-weight: bold;
+    font-size: larger;
+}
+
+#speciality h1{
+    font-style: italic;
+    font-size: 60px;
+    padding-top:1%;
+    padding-bottom: 3%;
+}
+
+#speciality div section{
+    float: left;
+    width: 25%;
+    height: 200px;
+    padding: 10% 0%;
+    
+}
+
+#speciality ul li{
+    display: inline;
+    font-size: x-large;
+    padding:2%;
+    padding-bottom: 5%;
+}
+
+#speciality ul li::after {
+    content: '';
+    width:50%;
+    height:3px;
+    background-color: palevioletred;
+    display: block;
+    position: absolute;
+    margin-left: 24%;
+    
+}
+
+
+#speciality ul li:hover{
+    border-bottom: 5px solid pink;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+
+#hours{
+    float: left;
+    height: 700px;
+    width: 100%;
+    text-align: center;
+    background-color: azure;
+}
+
+#hours span{
+    display: grid;
+}
+
+#hours #book{
+    color: orange;
+    font-weight: bold;
+    text-align: center;
+    display: grid;
+    padding-top: 3%;
+}
+
+#hours h1{
+    font-style: italic;
+    padding-top: 1%;
+    font-size: 50px;
+}
+
+#hours i{
+    font-size: x-large;
+    color: orange;
+    padding-top: 3%;
+}
+
+#hours span+span{
+    color: orange;
+    font-style: italic;
+    font-weight: bolder;
+    font-size: 20px;
+    padding-top: 1%;
+}
+
+#hours div section{
+    float: left;
+    width: 50%;
+    padding-top: 5%;
+    font-size: larger;
+}
+
+#hours .dias{
+    padding-top: 2%;
+}
+
+#hours .horas{
+    padding-top: 0%;
+    font-weight: bold;
+    font-size: x-large;
+    
+}
+
+#hours img{
+    padding-top: 4%;
+}
+
+footer{
+    height: 500px;
+    background-color: rgb(245, 238, 238);
+    float: left;
+    width: 100%;
+    text-align: center;
+    display:grid;
+}
+
+footer #test{
+    color: orange;
+    padding-top: 3%;
+    font-weight: bold;
+}
+
+footer h2{
+    font-size: 40px;
+}
+
+footer img{
+    margin-left: 47%;
+    border-radius: 100px;
+}
+
+footer span{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+footer span+span{
+    font-weight:normal;
+    margin-top: 0%;
+    padding-top: 0%;
+}
+
+footer p{
+    margin: 0% 20%;
+}
+
+
+@media screen and (max-width: 700px){
+    main ul li{
+        display: none;
+    }
+
+    #hambi{
+        display:flex;
+    }
+
+    main div i{
+        padding: 20px 15px;
+    }
+
+    #speciality div section{
+        float: left;
+        width: 100%;
+    }
+    #speciality ul li::after {
+        width:80%;
+        margin-left: 10%;
+        
+    }
+    #discover button {
+        display: none;
+    }
+}

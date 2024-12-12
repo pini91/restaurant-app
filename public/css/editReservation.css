@@ -1,0 +1,92 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+/* body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgb(130, 106, 251);
+} */
+
+body{
+    background-color: rgb(238, 245, 253);
+}
+.container {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin-left: 40%;
+  margin-top: 5%;
+}
+
+.container header {
+  font-size: 1.7rem;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+}
+
+
+
+/* .buttonTable{
+    margin-top: 7%;
+    width: 60%;
+    height: 40px;
+    font-size: 1rem;
+    background: white;
+    border-color: rgb(243, 240, 240);
+}
+
+.buttonToChanges{
+    margin-top: 7%;
+    width: 60%;
+    height: 40px;
+    font-size: 1rem;
+    background: white;
+    border-color: rgb(243, 240, 240);
+} */
+
+button{
+  margin-top: 7%;
+  width: 60%;
+  height: 40px;
+  font-size: 1rem;
+  background: white;
+  border-color: rgb(243, 240, 240);
+  cursor: pointer;
+}
+
+
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+/*Responsive*/
+@media screen and (max-width: 600px) {
+  .container{
+    margin-left:10%;
+   }
+
+  .form .column {
+    flex-wrap: wrap;
+  }
+  .form :where(.gender-option, .gender) {
+    row-gap: 15px;
+  }
+}

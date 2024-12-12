@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/form.css" type="text/css">
+    <script src="https://kit.fontawesome.com/e6f9fb07b2.js" crossorigin="anonymous"></script>
+</head>
+    <body>
+      <section class="container">
+        <header>Make a reservation</header>
+        <form action="/bookForm/createReservation" class="form" method="POST">
+          <div class="input-box">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter  name" required/> 
+          </div>
+          <div class="input-box">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="Enter Email"  /><!--required-->
+          </div>
+          <div class="column">
+            <div class="input-box">
+              <label for="phoneNumber">Phone Number</label>
+              <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;"  id="phoneNumber" name="phoneNumber" placeholder="Enter phone" title="Ten digits code" required />
+            </div>
+            <div class="input-box">
+              <label for="date">Date</label>
+              <input type="date" required id="date" name="date" min=<%=currentDate%> max=<%=maxDate%> />
+            </div>
+          </div>
+          </div>
+          <div class="column">
+            <div class="select-box ">
+              <select name="hours">
+                <option hidden  required>Hour</option> 
+                <option class="hour">12:00</option>
+                <option>01:00</option>
+                <option>02:00</option>
+                <option>03:00</option>
+                <option>04:00</option>
+                <option>05:00</option>
+                <option>06:00</option>
+                <option>07:00</option>
+                <option>08:00</option>
+                <option>09:00</option>
+                <option>10:00</option>
+                <option>11:00</option>
+              </select>
+            </div>
+          </div>
+        </div>
+          <!-- <div class="input-box address"> -->
+            <div class="column">
+              <div class="select-box">
+                <select name="partySize">
+                  <option hidden >Party size</option> <!--required-->
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+        
+                </select>
+              </div>
+              <!-- <input type="text" placeholder="Your table" required /> -->
+            </div>
+            
+          <button type="submit" value="Upload">Submit</button>
+          <!-- <input type="submit"> -->
+        </form>
+      </section>
+
+    </body>
+</html>
+
