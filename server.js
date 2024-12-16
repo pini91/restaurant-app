@@ -19,7 +19,7 @@ require("dotenv").config({ path: "./config/.env" });
 
 
 //passport config
-require("./config/passport")//(passport) 
+require("./config/passport")(passport) //CAMBIE (PASSPORT DE ESTAR COMENTADO)
 
 connectDB() // Here is where we are calling our function for connection to the database.
 

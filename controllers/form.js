@@ -55,12 +55,12 @@ module.exports = {
       try{
         const user= await User.create({ 
           email: req.body.email,
-          password: req.body.email
+          password: req.body.password
         })
           console.log(`FROM USER CREATE${user}`)
 
         await Reservations.create({
-          name: req.body.name, 
+          name: req.body.password, 
           phoneNumber: req.body.phoneNumber, 
           email: req.body.email,
           date: req.body.date, 

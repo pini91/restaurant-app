@@ -5,6 +5,7 @@ const tableController = require("../controllers/table");
 const editReservationController = require("../controllers/editReservation");
 const admin = require("../controllers/admin");
 const { ensureAuth  } = require('../middleware/auth')
+const { isAdmin  } = require('../middleware/auth')
 
 
 
@@ -26,7 +27,9 @@ router.get("/makeChanges", ensureAuth, editReservationController.getEditForm)
 
 router.get("/reservationDeleted", editReservationController.getReservationDeleted)
 
-router.get("/adminIndex",ensureAuth, admin.getAdminPage )
+router.get("/adminLog", admin.getAdminPage)
+                    
+router.get("/reservations",ensureAuth, isAdmin, admin.getReservations)
 
 module.exports = router;
 

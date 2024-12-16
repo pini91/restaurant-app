@@ -1,5 +1,4 @@
 const passport = require('passport')
-//const validator = require('validator')
 const Admin = require('../models/Admin')
 
 
@@ -16,29 +15,15 @@ module.exports = {
       }
     },
 
-    // auth: function async (req, res, next) {
-    //   //req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
+    isAdmin: function (req, res, next){
+      if (req.isAuthenticated() && req.user.isAdmin) {
+        return next()
+      } else {
+        console.log("couldnt find your authentication or you are not an admin")//BORRAR LUEGO, you wont be allowed in the tables route if you are not logged in
+        res.redirect('/admin/adminLogIn')
+      }
 
-    //   try{
-    //       const admin = Admin.find(
-    //         {email: req.body.email},
-    //         {password: req.body.password}
-    //       )
-
-    //       console.log(admin)
-
-    //       if(admin){
-    //         next()
-
-    //       }else{
-    //         req.flash('errors', { msg: 'Account with that email address or username doesnt exists.' })
-    //         res.redirect("/admin")
-    //       }
-
-    //     }catch(err){
-    //         console.log(err)
-    //       }
-    // },
+    },
   }
 
 

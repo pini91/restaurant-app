@@ -9,10 +9,21 @@
     <script src="https://kit.fontawesome.com/e6f9fb07b2.js" crossorigin="anonymous"></script>
 </head>
     <body>
+        <% if (locals.messages.errors) { %>
+            <% messages.errors.forEach( el => { %>
+                <div class="alert alert-danger"><%= el.msg %></div>
+            <% }) %>    
+        <% } %>
+        <% if (locals.messages.info) { %>
+            <% messages.info.forEach( el => { %>
+                <div class="alert alert-danger"><%= el.msg %></div>
+            <% }) %>    
+        <% } %>
         <div>
-            <form action="/admin/login" method="POST">
+            <form action="/admin/adminLogIn" method="POST">
                 <input class="top" type="email" name="email" placeholder="Email">
                 <input type="password" name="password" placeholder="Password">
+                <input type="password" name="confirmPassword" placeholder="Confirm Password">
                 <input type="submit">
             </form>
         </div>
