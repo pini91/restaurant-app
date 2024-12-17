@@ -31,5 +31,8 @@ router.get("/adminLog", admin.getAdminPage)
                     
 router.get("/reservations",ensureAuth, isAdmin, admin.getReservations)
 
+router.get("/logOut", admin.logOut)
+
+
 module.exports = router;
 
