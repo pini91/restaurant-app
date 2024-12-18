@@ -5,7 +5,7 @@
     font-family: "Poppins", sans-serif;
   }
 
-  button{
+  .logout{
     margin-left: auto;
     width: 100px;
     height: 30px;
@@ -19,6 +19,7 @@
   header{
     font-weight: bold;
     font-size: x-large;
+    margin-left: 2%;
   }
 
   div{
@@ -31,13 +32,23 @@
     background-color: rgb(227, 223, 223);
     width: 20%;
     font-size: x-large;
+    margin-left: 2%;
   }
   
   span{
     margin-bottom: 3%;
+    padding-top: 1%;
   }
 
   .today{
     font-size: x-large;
   }
+
+  .reservationButtons{
+    width: 50%;
+    margin-bottom: 1%;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
 
