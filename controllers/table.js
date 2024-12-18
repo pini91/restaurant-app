@@ -64,8 +64,11 @@ module.exports = {
         main().catch(console.error);
 
       //DELETING THE USERID
-      await Users.findOneAndDelete({_id: response[0].userID})
-      console.log('Deleted User')
+      if(!req.user.isAdmin){
+        await Users.findOneAndDelete({_id: response[0].userID})
+        console.log('Deleted User')
+      }
+    
 
       //DESTROYING THE SESSION ID
       req.session.destroy((err) => {

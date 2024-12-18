@@ -2,6 +2,7 @@ const passport = require('passport')
 const validator = require('validator')
 //const Admin = require('../models/Reservation')
 const User = require('../models/User')
+const Reservations = require('../models/Reservation')
 
 
 
@@ -120,15 +121,26 @@ module.exports = {
       
       },
 
-      getReservations: (req, res) => {
+      getReservations: async (req, res) => {
+        //console.loging the loged in admin
         console.log(req.user)
-      
-        res.render("adminReservations.ejs");
+
+        //getting todays date
+        let date = new Date()
+        date = date.toJSON()
+        today = date.slice(0,10)
+
+        try{
+          const reservations = await Reservations.find({date: today})
+          res.render("adminReservations.ejs", {reservations: reservations, today: today})
+        }catch(err){
+            console.log(err)
+        }
        
       },
 
       logOut: (req, res) => {
-        
+
         req.session.destroy((err) => {
           if (err) console.log('Error : Failed to destroy the session during logout.', err)
           req.user = null
