@@ -11,7 +11,7 @@ module.exports = {
         return next()
       } else {
         console.log("couldnt find your authentication babe!")//BORRAR LUEGO, you wont be allowed in the tables route if you are not logged in
-        res.redirect('/bookForm')
+        res.redirect('/adminLog')
       }
     },
 
@@ -20,7 +20,7 @@ module.exports = {
         return next()
       } else {
         console.log("couldnt find your authentication or you are not an admin")//BORRAR LUEGO, you wont be allowed in the tables route if you are not logged in
-        res.redirect('/admin/adminLogIn')
+        res.redirect('/adminLogIn')
       }
 
     },
