@@ -9,14 +9,22 @@
 </head>
     <body>
         <div>
-            <button><a href="/logOut">Log out</a></button>
+            <button class="logout"><a href="/logOut">Log out</a></button>
         </div>
 
         <header>RESERVATIONS</header><br>
 
-        <header class="today"><%= today%></header><br>
+        <header class="today"><%=today%></header><br>
 
-        
+
+        <form action="/reservations">
+            <div class="input-box">
+                <label for="date">DATE</label>
+                <input type="date" required id="date" name="date" min=<%=currentDate%> max=<%=maxDate%> />
+                <button class="form-button" type="submit" value="Upload">Submit</button>
+            </div>
+        </form>
+       
         <ul>
             <% reservations.forEach( el => { %>
                 <li class='reservations' data-id='<%=el._id%>'>
@@ -24,12 +32,19 @@
                         <span>Name: <%= el.name %></span>
                         <span>Table: <%= el.table %></span>
                         <span>Time: <%= el.hour %></span>
+                        <form action="/admin/editReservation/<%=el._id%>?_method=PUT" method="POST">
+                            <button class="reservationButtons">Edit Reservation</button>
+                        </form>
+                        <form action="/admin/deleteReservation/<%=el._id%>?_method=DELETE" method="POST">
+                            <button class="reservationButtons"> Delete Reservation</button>   
+                        </form>
+                       
                     </div>
                 </li><br>
             <% }) %>   
 
         </ul>
-        
+        <script src="js/adminReservations.js"></script>
     </body>
 </html>
 

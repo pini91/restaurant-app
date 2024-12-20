@@ -42,50 +42,6 @@ module.exports = {
 
     }
 
-  
-    // const user = new User({ //new user is our user model and save it in a variable user
-    //   email: req.body.email,
-    //   password: req.body.password
-    // })
-  
-    //const signUpUser = User.find({email: req.body.email})
-
-  //   User.find({email: req.body.email}).then(function(data){
-  //     if(!data){
-  //       const savedUser = user.save()
-  //       console.log(savedUser)
-  //       res.redirect('/adminLogIn')
-  //     }else{
-  //       req.flash('errors', { msg: 'Account with that email address or username already exists.' })
-  //       res.redirect('/admin')
-
-  //     }
-     
-  //  })
-   
-    
-    // if(!signUpUser){
-    //   const savedUser = user.save()
-    //   console.log(savedUser)
-    //   res.redirect('/adminLogIn')
-    // }else{
-    //   req.flash('errors', { msg: 'Account with that email address or username already exists.' })
-    //   res.redirect('/admin/signup')
-    // }
-
-    // (err, existingUser) => { //if theres an error throw that error
-    //   if (err) { return next(err) }
-    //   if (existingUser) { //if the user exist redirect to the signup
-    //     req.flash('errors', { msg: 'Account with that email address or username already exists.' })
-    //     return res.redirect('../signup')
-    //   }
-    //   user.save((err) => { //SAVING THE USER db
-    //     if (err) { return next(err) }
-
-    //     res.redirect('/adminLogIn')
-    //   })
-    // }
-  
         
     },
     getAdminPage: (req, res) => {
@@ -125,14 +81,40 @@ module.exports = {
         //console.loging the loged in admin
         console.log(req.user)
 
-        //getting todays date
+        //getting the calendar to see different reservations
         let date = new Date()
-        date = date.toJSON()
-        today = date.slice(0,10)
+        let curr= date.toJSON()
+        let currMonth= curr.slice(0,10)
+  
+  
+        var dateToday = new Date();
+        var month = dateToday.getMonth() + 3;
+        var day = dateToday.getDate();
+        var year = dateToday.getFullYear() ;
+  
+        if (month < 10)
+          month = '0' + month.toString();
+        if (day < 10)
+          day = '0' + day.toString();
+            day = day 
+        var time = new Date().getTime();
+        var d = new Date();
+        d.setHours(0,0,0,0);
+        if (time >= 15 && time <= d) {
+        day = day+1;
+        maxDate = year + '-' + month + '-' + day;
+        } 
+        var maxDate = year + '-' + month + '-' + day;
+
+
+        //getting todays date
+        let danas = new Date()
+        danas = danas.toJSON()
+        danas = danas.slice(0,10)
 
         try{
-          const reservations = await Reservations.find({date: today})
-          res.render("adminReservations.ejs", {reservations: reservations, today: today})
+          const reservations = await Reservations.find({date: danas})
+          res.render("adminReservations.ejs", {currentDate: currMonth, maxDate: maxDate, reservations: reservations, today:danas})
         }catch(err){
             console.log(err)
         }
@@ -148,6 +130,34 @@ module.exports = {
         })
        
       },
+
+      AdminDelete : async (req, res) => {
+        try {
+          await Reservations.findOneAndDelete({ _id: req.params.id });
+          console.log("Reservation Deleted ");
+          //res.redirect(req.get('referer'));
+          res.redirect("/reservations");
+        } catch (err) {
+          console.log(err)
+        }
+      },
+
+      //attaching the id to the admin
+      adminReservations : async (req, res) => {
+        console.log(`id from admin${req.params.id}`)
+        try {
+          await User.findOneAndUpdate({ _id: req.user.id },{
+            reservationId: req.params.id
+          });
+          console.log("reservation added to admin user ");
+          res.redirect("/makeChanges");
+        } catch (err) {
+          console.log(err)
+        }
+      },
+
+
+        
   };
 
   
