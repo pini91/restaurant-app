@@ -10,8 +10,12 @@ router.get("/", adminController.getAdminIndex);
 
 router.post("/adminSignup", adminController.getSignup);
 
-router.post("/login", adminController.getAdminLogIn)
+router.post("/login", adminController.getAdminLogIn);
 
+router.delete("/deleteReservation/:id", adminController.AdminDelete);
+
+//to attach the reservationid to the admins
+router.put("/editReservation/:id", adminController.adminReservations )
 
 
 

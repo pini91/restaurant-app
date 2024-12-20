@@ -51,4 +51,35 @@
     cursor: pointer;
   }
 
+  .input-box{
+    width: 50%;
+    margin-top: 20px;
+    color: #333;
+    position: relative;
+    height: 60px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    margin-top: 8px;
+    padding: 0 15px;
+  }
 
+  input{
+    width: 20%;
+    margin-left: 1%;
+  }
+
+  label{
+    margin-left: 1%;
+    font-weight: bold;
+  }
+
+
+  .form-button{
+    width: 20%;
+    margin-left: 1%;
+  }
+  
+  form{
+    margin-bottom: 1%;
+  }

@@ -135,8 +135,8 @@ module.exports = {
       const response = await Reservations.find({_id:req.user.reservationId})
         console.log(`FROM FINAL EDIT${response}`)
 
-    //RENDERING THE LAST PAGE
-      res.render("final.ejs", {name: response[0].name[0].toUpperCase()+response[0].name.slice(1).toLocaleLowerCase(), id: response[0].id})
+    // //RENDERING THE LAST PAGE
+    //   res.render("final.ejs", {name: response[0].name[0].toUpperCase()+response[0].name.slice(1).toLocaleLowerCase(), id: response[0].id})
 
     //FUNCTION FOR THE EMAIL RESERVATION
       async function main() {
@@ -165,15 +165,28 @@ module.exports = {
       
       main().catch(console.error);
 
-    //DELETING THE USERID
-    await User.findOneAndDelete({email: response[0].email})
-    console.log('Deleted User from Edit Final')
-
-    //DESTROYING THE SESSION ID
-    req.session.destroy((err) => {
+    //DELETING THE USERID or removing the reservation from the admin
+    if(req.user.isAdmin){
+      await User.findOneAndUpdate({_id:req.user.id},{
+        reservationId:"none"
+      })
+      console.log("reservation removed from the admin")
+      res.redirect("/reservations")
+    }else{
+      //RENDERING THE LAST PAGE
+      res.render("final.ejs", {name: response[0].name[0].toUpperCase()+response[0].name.slice(1).toLocaleLowerCase(), id: response[0].id})
+      await User.findOneAndDelete({email: response[0].email})
+      console.log('Deleted User from Edit Final')
+      //DESTROYING THE SESSION ID
+      req.session.destroy((err) => {
       if (err) console.log('Error : Failed to destroy the session during logout.', err)
       req.user = null
     })
+
+    }
+    
+
+    
 
     }catch(err){
         console.log(err)
