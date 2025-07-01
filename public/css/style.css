@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+
 }
 
 *, *::before, *::after{
@@ -16,28 +17,53 @@ main{
     background-attachment:scroll;
     background-size: cover;
     width:100%;
+    display: flex;
     float: left;
     clear: both;
 }
 
-main ul{
+.nav{
     position: absolute;
     right:5%;
     margin: 2%;
     width: fit-content;
-
+    /* overflow: hidden; */
+    position: fixed;
+    background-color: rgb(52, 113, 52);
+    border-color: rgb(192, 164, 112);
+    height: 30px;
+    padding-top: 0.5%;
+    border-style:double;
+    border-radius: 10px;
+    font-family:cursive;
 }
 
-main ul li{
+.navList{
     display: inline;
     padding: 10px;
     font-weight:bolder;
     font-size: larger;
     cursor: pointer;
+    border-color: orange;
+    padding-top: 1%;
+    border-style:double;
 }
-main ul li:hover{
+
+a{
+    color: black;
+    text-decoration: none;
+     border-color: rgb(176, 115, 1);
+}
+
+.navList:hover{
     color:lightgray;
+    opacity: 0.5;
+    /* font-size: x-large; */
 }
+
+/* .nav2{
+    display: none;
+} */
 
 main section{
     float: start;
@@ -65,27 +91,39 @@ main div i{
     font-size: larger;
 }
 
+
 #hambi{
-    position: absolute;
-    top: 2%;
-    right: 2%;
-    height: 45px;
-    width: 45px;
+   position: absolute;
+    right: 0;
+    height: 40px;
+    width: 40px;
     display: none;
     flex-direction: column;
-    justify-content: space-between;
+
 }
 
+#hambi:hover {
+    background-color: #ddd;
+  }
+
+#hambi section{
+    margin-top: 20%;
+}
+
+
+
 .lineas{
-    height: 4px;
-    width: 100%;
+    height: 5px;
+    width: 70%;
     background-color: black;
     border-radius: 10px;
+    margin-left: 15%;
 }
+
 
 #discover{
     height: 550px;
-    background-image: url(../imgs/elevated-view-fresh-healthy-breakfast-white-background_23-2147907017.avif);
+    background-image: url(../imgs/food.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: scroll;
@@ -141,23 +179,24 @@ main div i{
 
 #speciality{
     float: left;
-    height: 900px;
-    background-color: lightgray;
+    height: 850px;
+    background-color: rgb(246, 214, 154);
     width: 100%;
     text-align: center;
 }
 
-#speciality span{
+/* #speciality span{
     color: orange;
     font-weight: bold;
     font-size: larger;
-}
+} */
 
 #speciality h1{
     font-style: italic;
     font-size: 60px;
     padding-top:1%;
     padding-bottom: 3%;
+    margin-top: 5%;
 }
 
 #speciality div section{
@@ -179,7 +218,7 @@ main div i{
     content: '';
     width:50%;
     height:3px;
-    background-color: palevioletred;
+    background-color: rgb(130, 86, 5);
     display: block;
     position: absolute;
     margin-left: 24%;
@@ -188,18 +227,42 @@ main div i{
 
 
 #speciality ul li:hover{
-    border-bottom: 5px solid pink;
+    border-bottom: 5px solid rgb(231, 153, 9);
     width: 100%;
     cursor: pointer;
     transition: 0.2s linear;
 }
+
+
+#wine{
+    float: left;
+    width: 100%;
+    background-color: white;
+    /* height: 500px; */
+}
+
+#sips{
+    margin-top: 2%;
+    text-align: center;
+    text-decoration: underline;
+    color: rgb(249, 100, 100);
+}
+
+#bottle{
+    margin-top: 2%;
+    margin-left: 43%;
+    /* margin-left: auto;
+    margin-right: auto; */
+    /* width: 50%; */
+}
+
 
 #hours{
     float: left;
     height: 700px;
     width: 100%;
     text-align: center;
-    background-color: azure;
+    background-color: rgb(229, 235, 235);
 }
 
 #hours span{
@@ -256,63 +319,140 @@ main div i{
     padding-top: 4%;
 }
 
-footer{
-    height: 500px;
-    background-color: rgb(245, 238, 238);
-    float: left;
+footer{ 
+    background-color: rgb(190, 188, 188);
     width: 100%;
     text-align: center;
-    display:grid;
-}
+    float: left;
 
-footer #test{
-    color: orange;
-    padding-top: 3%;
-    font-weight: bold;
-}
+ } 
 
-footer h2{
-    font-size: 40px;
-}
+@media screen and (max-width: 1700px){
+    #speciality{
+        height: 1300px;
+    }
+   
 
-footer img{
-    margin-left: 47%;
-    border-radius: 100px;
-}
+    #speciality div section{
+        float: left;
+        width: 50%;
+        flex: 50%;
+        max-width: 50%;
+    }
 
-footer span{
-    font-weight: bold;
-    font-size: 25px;
-}
 
-footer span+span{
-    font-weight:normal;
-    margin-top: 0%;
-    padding-top: 0%;
-}
+    #bottle{
+        margin-top: 2%;
+        margin-left: 30%;
+    }
 
-footer p{
-    margin: 0% 20%;
+  
+
 }
 
 
-@media screen and (max-width: 700px){
+@media screen and (max-width: 1000px){
+    #speciality{
+        height: 1000px;
+    }
+   
+
+    #speciality div section{
+        float: left;
+        width: 50%;
+        flex: 50%;
+        max-width: 50%;
+    }
+
+
+    #bottle{
+        margin-top: 2%;
+        margin-left: 30%;
+    }
+
+  
+
+}
+
+
+@media screen and (max-width: 600px){
     main ul li{
         display: none;
     }
 
     #hambi{
         display:flex;
+        position: fixed;
+        cursor: pointer;
     }
+
+
+    .nav{
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        position: fixed;
+        right:0;
+        margin-top: 8%;
+        /* margin: 2; */
+        width: 100%;
+        /* overflow: hidden; */
+        /* position: fixed;   #c7c5c5; */
+        background-color: #ddd;
+        /* background-color: rgb(128, 243, 128); */
+        border-color: none;
+        height: 200px;
+        padding-top: 0.5%;
+        border-style:none;
+        border-radius: 1px;
+        font-family:cursive;
+        
+    }
+
+     .navList{ 
+        display: inline;
+        padding: 10px;
+        font-weight:bolder;
+        font-size: larger;
+        cursor: pointer;
+        border-color: none; 
+        border-style:none;
+        padding-left: 5%;
+    } 
+
+    a{
+        color: black;
+        text-decoration: none;
+        /* border-color: rgb(176, 115, 1); */
+    }
+
+    .navList:hover{
+        /* opacity: 0.5; */
+        background-color:#9e9999;
+        cursor: pointer;
+        /* font-size: x-large; */
+    }
+
 
     main div i{
         padding: 20px 15px;
+    
+    }
+    #speciality{
+        height: 1500px;
+    }
+
+    #discover{
+        height: 700px;
     }
 
     #speciality div section{
         float: left;
         width: 100%;
+        flex: 100%;
+        max-width: 100%;
     }
+  
     #speciality ul li::after {
         width:80%;
         margin-left: 10%;
@@ -321,4 +461,21 @@ footer p{
     #discover button {
         display: none;
     }
+    #bottle{
+        margin-top: 2%;
+        margin-left: 18%;
+    }
+    /* #bottle img{
+        width:300px;
+    } */
+
+    #hours{
+        height: 50px;
+    }
+
+    footer{ 
+        display: none;
+     } 
+
 }
+

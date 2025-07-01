@@ -12,6 +12,9 @@ router.post("/adminSignup", adminController.getSignup);
 
 router.post("/login", adminController.getAdminLogIn);
 
+//new route
+router.post("/date", adminController.getDate);
+
 router.delete("/deleteReservation/:id", adminController.AdminDelete);
 
 //to attach the reservationid to the admins

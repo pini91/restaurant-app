@@ -53,7 +53,9 @@ module.exports = {
             from: 'testingmyaps@gmail.com', // sender address
             to: `${response[0].email}`, // receiver
             subject: "RESTAURANT RESERVATION ✔", // Subject line
-            text: `Hello ${response[0].name[0].toUpperCase()+response[0].name.slice(1).toLocaleLowerCase()} , Your reservation number at Health and Taste for ${response[0].date} in table: ${response[0].table} at ${response[0].hour} is: ${response[0].id} to edit or delete your reservation go to: http://localhost:2121/edit `, // plain text body
+            text: `Hello ${response[0].name[0].toUpperCase()+response[0].name.slice(1).toLocaleLowerCase()}!, 
+            Your reservation number at Health and Taste for ${response[0].date}, in table: ${response[0].table} at ${response[0].hour} is: ${response[0].id}.
+            To edit or delete your reservation go to: http://localhost:2121/edit`, // plain text body
           });
         
           console.log("Message sent: %s", info.messageId);

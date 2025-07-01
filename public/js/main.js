@@ -35,7 +35,6 @@ async function tableNumber(){
         console.log(err)
     }
     
-   
-
-   // window.location.href = "http://localhost:2121/bookForm/final"
 }
+
+

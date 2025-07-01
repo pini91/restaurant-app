@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path= require('path')
 const mongoose = require("mongoose")
 const passport = require("passport")
 const session = require("express-session") // is gonna handle a generating session id for us
@@ -28,7 +29,8 @@ app.set("view engine", "ejs");
 
 //Static Folder
 app.use(express.static("public"));
-// app.use(express.static(__dirname + '/public'));
+app.use('/public/imgs/', express.static('./public/imgs'));
+//app.use(express.static(__dirname + '/public'));
 
 //body parsing -set up middleware
 

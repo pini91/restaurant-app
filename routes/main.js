@@ -31,6 +31,18 @@ router.get("/adminLog", admin.getAdminPage)
                     
 router.get("/reservations",ensureAuth, isAdmin, admin.getReservations)
 
+router.get("/menu", mainController.getMenu);
+
+router.get("/breakfast", mainController.getBreakfast);
+
+router.get("/lunch", mainController.getLunch);
+
+router.get("/dinner", mainController.getDinner);
+
+router.get("/gallery", mainController.getGallery);
+
+router.get("/location", mainController.getLocation);
+
 router.get("/logOut", admin.logOut)
 
 

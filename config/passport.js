@@ -34,6 +34,9 @@ module.exports = function (passport) {
     User.findById(id) //when we want the user to come out of the session, we will grab that user id that was store there and find it in the database
     .then((user)=>{
       done(null,user);
-    });
-  })
+    })
+    .catch(function (err) {
+      console.log(err);
+    })
+  });
 }

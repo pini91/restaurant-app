@@ -9,7 +9,7 @@ const Reservations = require('../models/Reservation')
 module.exports = {
     getAdminIndex: (req, res) => {
       
-      res.render("adminSignUp.ejs");
+      res.render("adminLogIn.ejs");
      
     },
 
@@ -81,30 +81,113 @@ module.exports = {
         //console.loging the loged in admin
         console.log(req.user)
 
+
         //getting the calendar to see different reservations
-        let date = new Date()
-        let curr= date.toJSON()
-        let currMonth= curr.slice(0,10)
+        // let date = new Date()
+        // let curr= date.toJSON()
+        // let currMonth= curr.slice(0,10)
   
-  
-        var dateToday = new Date();
-        var month = dateToday.getMonth() + 3;
-        var day = dateToday.getDate();
-        var year = dateToday.getFullYear() ;
-  
+        //setting the maxDate
+        let dateToday = new Date();
+        let month = dateToday.getMonth() + 3;
+        let day = dateToday.getDate();
+        let year = dateToday.getFullYear();
+        
         if (month < 10)
           month = '0' + month.toString();
         if (day < 10)
           day = '0' + day.toString();
             day = day 
-        var time = new Date().getTime();
-        var d = new Date();
+        let time = new Date().getTime();
+        let d = new Date();
         d.setHours(0,0,0,0);
         if (time >= 15 && time <= d) {
         day = day+1;
         maxDate = year + '-' + month + '-' + day;
         } 
-        var maxDate = year + '-' + month + '-' + day;
+        let maxDate = year + '-' + month + '-' + day;
+
+        //setting the minDate
+        // var dateToday = new Date();
+        let prevMonth = dateToday.getMonth()-1;
+        //var prevDay = dateToday.getDate();
+        let prevYear = dateToday.getFullYear() -4;
+
+        if (prevMonth < 10)
+          prevMonth = '0' + prevMonth.toString();
+        if (day < 10)
+          day = '0' + day.toString();
+            day = day 
+        let prevTime = new Date().getTime();
+        let prevd = new Date();
+        prevd.setHours(0,0,0,0);
+        if (prevTime >= 15 && prevTime <= d) {
+        day = day+1;
+        minDate = prevYear + '-' + prevMonth + '-' + day;
+        } 
+        let minDate = prevYear + '-' + prevMonth + '-' + day;
+
+
+        //getting todays date
+        let danas = new Date()
+        danas = danas.toJSON()
+        danas = danas.slice(0,10)
+
+
+        try{
+          const reservations = await Reservations.find({date: danas})
+          res.render("adminReservations.ejs", {reservations: reservations, today:danas, maxDate:maxDate, minDate:minDate, selectedDate:danas})
+        }catch(err){
+            console.log(err)
+        }
+       
+      },
+
+      getDate: async (req, res) =>{
+        //let chosenDay= req.body.dateFromJSFile
+        //console.log(req.user)
+
+        let chosenDay = req.body.date
+        console.log(chosenDay)
+
+        //setting the maxDate
+        let dateToday = new Date();
+        let month = dateToday.getMonth() + 3;
+        let day = dateToday.getDate();
+        let year = dateToday.getFullYear();
+        
+        if (month < 10)
+          month = '0' + month.toString();
+        if (day < 10)
+          day = '0' + day.toString();
+            day = day 
+        let time = new Date().getTime();
+        let d = new Date();
+        d.setHours(0,0,0,0);
+        if (time >= 15 && time <= d) {
+        day = day+1;
+        maxDate = year + '-' + month + '-' + day;
+        } 
+        let maxDate = year + '-' + month + '-' + day;
+
+        //setting the minDate
+      
+        let prevMonth = dateToday.getMonth()-1;
+        let prevYear = dateToday.getFullYear() -4;
+
+        if (prevMonth < 10)
+          prevMonth = '0' + prevMonth.toString();
+        if (day < 10)
+          day = '0' + day.toString();
+            day = day 
+        let prevTime = new Date().getTime();
+        let prevd = new Date();
+        prevd.setHours(0,0,0,0);
+        if (prevTime >= 15 && prevTime <= d) {
+        day = day+1;
+        minDate = prevYear + '-' + prevMonth + '-' + day;
+        } 
+        let minDate = prevYear + '-' + prevMonth + '-' + day;
 
 
         //getting todays date
@@ -113,13 +196,16 @@ module.exports = {
         danas = danas.slice(0,10)
 
         try{
-          const reservations = await Reservations.find({date: danas})
-          res.render("adminReservations.ejs", {currentDate: currMonth, maxDate: maxDate, reservations: reservations, today:danas})
+          const reservations = await Reservations.find({date:chosenDay})
+          //res.json(reservations)
+          console.log(reservations)
+          res.render("adminReservations.ejs", {reservations: reservations, today:danas, maxDate:maxDate, minDate:minDate, selectedDate:chosenDay})
         }catch(err){
             console.log(err)
         }
-       
       },
+
+
 
       logOut: (req, res) => {
 

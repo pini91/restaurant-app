@@ -10,20 +10,31 @@
     <body>
         <main>
             <nav>
-                <a href="#" id="hambi">
+                <div id="hambi">
                     <section class="lineas"></section>
                     <section class="lineas"></section>
                     <section class="lineas"></section>
-                </a>
-                <ul>
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Menu</li>
-                    <li>Order Now</li>
-                    <li>Blog</li>
-                    <li>Location</li>
-                    <li><i class="fa-solid fa-magnifying-glass"></i></li>
+                </div>
+                <!-- Top Navigation Menu -->
+                <!-- <div class="topnav"> -->
+                    <!-- Navigation links (hidden by default) -->
+                    <!-- <div id="myLinks">
+                    <a href="#news">Menu </a>
+                    <a href="#contact">Gallery </a>
+                    <a href="#about">Location </a>
+                    </div>
+                </div> -->
+    
+                <ul class="nav">
+                    <li class="navList"><a href="/menu">Menu |</a></li>
+                    <li class="navList"><a href="/gallery#">Gallery |</a></li>
+                    <li class="navList"><a href="/location">Location </a></li>
                 </ul>
+                <!-- <ul class="nav2">
+                    <li class="navList2"><a href="/menu">Menu </a></li>
+                    <li class="navList2"><a href="#">Gallery </a></li>
+                    <li class="navList2"><a href="#">Location </a></li>
+                </ul> -->
             </nav>
             <section>
                 <h1>Welcome To Our Cuisine Restaurant </h1>
@@ -48,58 +59,56 @@
                     Nemo est qui aliquid voluptate possimus!
                     Animi ducimus dignissimos nobis optio non quaerat, enim repudiandae quas! Delectus veniam quaerat error iste illo?
                 </p>
-                <button>Discover Menu <i class="fa-solid fa-arrow-right"></i></button> 
+                <!-- <button>Discover Menu <i class="fa-solid fa-arrow-right"></i></button>  -->
             </div>
         </section>
         <section id="speciality">
-            <span>
+            <!-- <span>
                 Order Online Now
-            </span>
+            </span> -->
             <h1>Our Speciality Cuisine</h1>
             <ul>
-                <li>Breakfast</li>
-                <li>Launch</li>
-                <li> Dinner</li>
-                <li> Dessert</li>
-                <li>Shake</li>
+                <li><a href="/breakfast">Breakfast</a></li>
+                <li><a href="/lunch">Lunch</a></li>
+                <li><a href="/dinner">Dinner</a></li>
+                <!-- <li> Dessert</li> -->
+                <!-- <li>Shake</li> -->
             </ul>
             <div>
-                <section><img src="https://placekitten.com/300/300" alt="salad"></section>
-                <section><img src="https://placekitten.com/300/300" alt="salmon"></section>
-                <section><img src="https://placekitten.com/g/301/301" alt="sendvic"></section>
-                <section><img src="https://placekitten.com/g/300/300" alt="egg"></section>
+                <section><img src="public/imgs/fruits.jpg" alt="fruits"/><br><h3>Fruits</h3></section>
+                <section><img src="public/imgs/salads.jpg" alt="salads"><br><h3>Salads</h3></section>
+                <section><img src="public/imgs/meats.jpg" alt="meat"><br><h3>Meats</h3></section>
+                <section><img src="public/imgs/sea-food.jpg" alt="salmon"/><br><h3>Sea Food</h3></section>
             </div>
 
+        </section>
+
+        <section id="wine">
+                <div id="sips">
+                    <h2>Enjoy our variety of wine selection!</h2>
+                </div>
+                <div id="bottle">
+                    <img src="/public/imgs/wine.jpg" alt="wine">
+                </div>
         </section>
 
         <section id="hours">
-            <span id="book">Book Table</span>
+            <!-- <span id="book">Book Table</span> -->
             <h1>Opening Hours</h1>
             <i class="fa-solid fa-phone"></i>
-            <span>Call Now</span>
+            <span><a href="tel:+12345678910">Call Now</a></span>
             <span>+12345 678 910</span>
             <div>
-                <section class="dias">Monday to Tuesday</section>
-                <section class="dias">Friday to Sunday</section>
-                <section class="horas">09:00am-22:00pm</section>
-                <section class="horas">11:00am-22:00pm</section>
+                <section class="dias">Monday to Friday</section>
+                <section class="dias">Saturday to Sunday</section>
+                <section class="horas">09:00am-10:00pm</section>
+                <section class="horas">09:00am-11:00pm</section>
             </div>
-            <img src="https://placekitten.com/350/250">
+            <img src="/public/imgs/call.jpg">
         </section>
-        <footer>
-            <span id="test">Testimonials </span>
-            <h2>Customer Say</h2>
-            <img src="https://placekitten.com/70/70">
-            <span>Mr John Smith</span>
-            <span>Art Director</span>
-            <i class="fa-solid fa-star"></i>
-
-            <p>
-                Delicious boneless, skinless chicken breat and fresh mushrooms in garlic and white wine sauce. Cuisine is 
-                a team work of Cuisine Restaurant cafe, we aim at promoting the foodstuff industry through the branches. We stablish and throughthe new dishes.
-            </p>
+        <footer >
+            ©Restaurants| Website created by Brenda Loncaric
         </footer>
-
+        <script src="js/index.js"></script>
     </body>
 </html>
-

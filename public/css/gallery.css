@@ -1,0 +1,30 @@
+body{
+    background-color: rgb(120, 81, 9);
+}
+button{
+    width: 70px;
+    height: 25px;
+    font-size: large;
+    cursor: pointer;
+  }
+  a{
+    text-decoration: none;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+h1{
+    font-style: italic;
+    text-align: center;
+    color: rgb(94, 10, 10);
+}
+
+div{
+    padding-left: 12%;
+}
+
+@media screen and (max-width: 600px){
+   img{
+    width: 50%;
+   }
+}
