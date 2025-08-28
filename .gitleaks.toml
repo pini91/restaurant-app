@@ -1,0 +1,63 @@
+# GitLeaks configuration for Your Kitchens App
+title = "GitLeaks Configuration for Your Kitchens App"
+
+[extend]
+useDefault = true
+
+[[rules]]
+description = "MongoDB Connection String"
+id = "mongodb-connection"
+regex = '''mongodb(\+srv)?://[^\s'"]+'''
+tags = ["database", "mongodb"]
+
+[[rules]]
+description = "Cloudinary API Key"
+id = "cloudinary-api-key"
+regex = '''(CLOUDINARY_)?API_KEY\s*=\s*['"]*\d+['"]*'''
+tags = ["cloudinary", "api-key"]
+
+[[rules]]
+description = "Cloudinary API Secret"
+id = "cloudinary-api-secret"
+regex = '''(CLOUDINARY_)?API_SECRET\s*=\s*['"]*[A-Za-z0-9_-]{20,}['"]*'''
+tags = ["cloudinary", "api-secret"]
+
+[[rules]]
+description = "Session Secret"
+id = "session-secret"
+regex = '''SESSION_SECRET\s*=\s*['"]*[^'"]{16,}['"]*'''
+tags = ["session", "secret"]
+
+[allowlist]
+description = "Allow example values in documentation"
+paths = [
+    '''README\.md''',
+    '''docs/.*''',
+    '''.github/.*''',
+    '''SECURITY_AUDIT\.md''',
+    '''RAILWAY_DEPLOYMENT\.md''',
+    '''\.env\.example''',
+    '''__test__.*'''
+]
+regexes = [
+    '''your_.*_here''',
+    '''your-.*-key''',
+    '''your-.*-secret''',
+    '''your-.*-name''',
+    '''your-.*-url''',
+    '''your-database-name''',
+    '''your-cloudinary-.*''',
+    '''https://.*\.example\.com''',
+    '''example\.com''',
+    '''test-secret''',
+    '''localhost:27017''',
+    '''127\.0\.0\.1''',
+    '''mongodb://localhost:27017''',
+    '''mongodb://.*-url:27017''',
+    '''railway-url''',
+    '''old-url''',
+    '''fallback-url''',
+    '''fallback-secret-key-for-emergency''',
+    '''Process\.env\.[A-Z_]+''',
+    '''\+srv'''
+]
