@@ -8,7 +8,7 @@ module.exports = {
     '!jest.config.js',
     '!__test__ /**'
   ],
-  testMatch: ['**/__test__ /**/*.js', '**/?(*.)+(spec|test).js'],
+  testMatch: ['**/__test__/**/*.js','**/?(*.)+(spec|test).js'],
   verbose: true,
   forceExit: true,
   clearMocks: true,
