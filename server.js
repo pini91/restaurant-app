@@ -29,7 +29,6 @@ app.use('/public/imgs/', express.static('./public/imgs'))
 // app.use(express.static(__dirname + '/public'));
 
 // body parsing -set up middleware
-
 app.use(express.urlencoded({ extended: true }))// this is just that we can grab every single part of the request been made.(input for example r grabbing a piece of word.)
 app.use(express.json())
 app.use(logger('dev'))
