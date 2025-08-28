@@ -27,7 +27,7 @@ describe('Health Endpoint', () => {
   test('should respond with 200 status for health check', async () => {
     const response = await request(app).get('/health')
     expect(response.status).toBe(200)
-    expect(response.body.status).toBe('healthy') 
+    expect(response.body.status).toBe('healthy')
     expect(response.body.timestamp).toBeDefined()
     expect(response.body.uptime).toBeDefined()
   })
