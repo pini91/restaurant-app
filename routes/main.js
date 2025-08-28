@@ -9,6 +9,15 @@ const { isAdmin } = require('../middleware/auth')
 
 // Main Routes
 router.get('/', mainController.getIndex)
+// Health check endpoint for Railway deployment
+router.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || 'development'
+  })
+})
 
 router.get('/tables', ensureAuth, tableController.getTable) //, ensureAuth is gonna check for authentication, it checks to make sure that you are logged in
 
