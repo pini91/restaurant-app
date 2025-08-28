@@ -52,16 +52,16 @@ jobs:
           
           # Health check with retry logic
           for i in {1..5}; do
-            if curl -f -s "https://restaurant-app-dev.up.railway.app/health"; then
+            if curl -f -s "https://health-and-taste-dev.up.railway.app/health"; then
               echo "✅ Health check passed on attempt $i"
               echo "🚀 Development app is healthy and responding"
-              echo "🔗 App URL: https://restaurant-app-dev.up.railway.app"
+              echo "🔗 App URL: https://health-and-taste-dev.up.railway.app"
               break
             else
               echo "❌ Health check failed on attempt $i"
               if [ $i -eq 5 ]; then
                 echo "⚠️ Health check failed after 5 attempts, but deployment may still be successful"
-                echo "🔗 Manual check: https://restaurant-app-dev.up.railway.app"
+                echo "🔗 Manual check: https://health-and-taste-dev.up.railway.app"
                 exit 0  # Don't fail the deployment, just warn
               fi
               sleep 10
@@ -71,8 +71,8 @@ jobs:
       - name: Post deployment notification
         run: |
           echo "✅ Successfully deployed to Development environment"
-          echo "� Development App: https://restaurant-app-dev.up.railway.app"
-          echo "🏥 Health Check: https://restaurant-app-dev.up.railway.app/health"
+          echo "� Development App: https://health-and-taste-dev.up.railway.app"
+          echo "🏥 Health Check: https://health-and-taste-dev.up.railway.app/health"
 
   deploy-prod:
     name: Deploy to Production
@@ -105,16 +105,16 @@ jobs:
           
           # Health check with retry logic
           for i in {1..5}; do
-            if curl -f -s "https://restaurant-app.up.railway.app/health"; then
+            if curl -f -s "https://health-and-taste.up.railway.app/health"; then
               echo "✅ Health check passed on attempt $i"
               echo "🚀 Production app is healthy and responding"
-              echo "🔗 App URL: https://restaurant-app.up.railway.app"
+              echo "🔗 App URL: https://health-and-taste.up.railway.app"
               break
             else
               echo "❌ Health check failed on attempt $i"
               if [ $i -eq 5 ]; then
                 echo "⚠️ Health check failed after 5 attempts, but deployment may still be successful"
-                echo "🔗 Manual check: https://restaurant-app.up.railway.app"
+                echo "🔗 Manual check: https://health-and-taste.up.railway.app"
                 exit 0  # Don't fail the deployment, just warn
               fi
               sleep 10
@@ -124,8 +124,8 @@ jobs:
       - name: Post deployment notification
         run: |
           echo "🚀 Successfully deployed to Production environment"
-          echo "� Production App: https://restaurant-app.up.railway.app"
-          echo "🏥 Health Check: hhttps://restaurant-app.up.railway.app/health"
+          echo "� Production App: https://health-and-taste.up.railway.app"
+          echo "🏥 Health Check: hhttps://health-and-taste.up.railway.app/health"
 
       - name: Create GitHub Release
         if: github.ref == 'refs/heads/main'
@@ -141,8 +141,8 @@ jobs:
 
             **Deployment:**
             - Successfully deployed to Production
-            - Production URL: https://restaurant-app.up.railway.app
-            - Health Check: https://restaurant-app.up.railway.app/health
+            - Production URL: https://health-and-taste.up.railway.app
+            - Health Check: https://health-and-taste.up.railway.app/health
           draft: false
           prerelease: false
         env:

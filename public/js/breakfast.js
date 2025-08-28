@@ -1,188 +1,188 @@
 // Get the modal
-var modal = document.getElementById("myModal");
+const modal1 = document.getElementById('myModal')
 
 // Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById("myImg");
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
+const img1 = document.getElementById('myImg')
+const modalImg1 = document.getElementById('img01')
+const captionText1 = document.getElementById('caption')
+img1.onclick = function () {
+  modal1.style.display = 'block'
+  modalImg1.src = this.src
+  captionText1.innerHTML = this.alt
 }
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+const span1 = document.getElementsByClassName('close')[0]
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span1.onclick = function () {
+  modal1.style.display = 'none'
 }
 
-////////////////////////////////////////////////////////////////////////2
+/// /////////////////////////////////////////////////////////////////////2
 // Get the modal2
-var modal = document.getElementById("myModal2");
+const modal2 = document.getElementById('myModal2')
 
 // Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById("myImg2");
-var modalImg = document.getElementById("img02");
-var captionText = document.getElementById("caption2");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
+const img2 = document.getElementById('myImg2')
+const modalImg2 = document.getElementById('img02')
+const captionText2 = document.getElementById('caption2')
+img2.onclick = function () {
+  modal2.style.display = 'block'
+  modalImg2.src = this.src
+  captionText2.innerHTML = this.alt
 }
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[1];
+const span2 = document.getElementsByClassName('close')[1]
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span2.onclick = function () {
+  modal2.style.display = 'none'
 }
 
-////////////////////////////////////////////////////////////////////////3
-var modal = document.getElementById("myModal3");
+/// /////////////////////////////////////////////////////////////////////3
+const modal3 = document.getElementById('myModal3')
 
-var img = document.getElementById("myImg3");
-var modalImg = document.getElementById("img03");
-var captionText = document.getElementById("caption3");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
+const img3 = document.getElementById('myImg3')
+const modalImg3 = document.getElementById('img03')
+const captionText3 = document.getElementById('caption3')
+img3.onclick = function () {
+  modal3.style.display = 'block'
+  modalImg3.src = this.src
+  captionText3.innerHTML = this.alt
 }
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[2];
+const span3 = document.getElementsByClassName('close')[2]
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span3.onclick = function () {
+  modal3.style.display = 'none'
 }
 
-////////////////////////////////////////////////////////////////////////4
+/// /////////////////////////////////////////////////////////////////////4
 
-var modal = document.getElementById("myModal4");
+const modal4 = document.getElementById('myModal4')
 
-var img = document.getElementById("myImg4");
-var modalImg = document.getElementById("img04");
-var captionText = document.getElementById("caption4");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
+const img4 = document.getElementById('myImg4')
+const modalImg4 = document.getElementById('img04')
+const captionText4 = document.getElementById('caption4')
+img4.onclick = function () {
+  modal4.style.display = 'block'
+  modalImg4.src = this.src
+  captionText4.innerHTML = this.alt
 }
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[3];
+const span4 = document.getElementsByClassName('close')[3]
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span4.onclick = function () {
+  modal4.style.display = 'none'
 }
 
-////////////////////////////////////////////////////////////////////////5
+/// /////////////////////////////////////////////////////////////////////5
 
-var modal = document.getElementById("myModal5");
+const modal5 = document.getElementById('myModal5')
 
-var img = document.getElementById("myImg5");
-var modalImg = document.getElementById("img05");
-var captionText = document.getElementById("caption5");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
+const img5 = document.getElementById('myImg5')
+const modalImg5 = document.getElementById('img05')
+const captionText5 = document.getElementById('caption5')
+img5.onclick = function () {
+  modal5.style.display = 'block'
+  modalImg5.src = this.src
+  captionText5.innerHTML = this.alt
 }
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[4];
+const span5 = document.getElementsByClassName('close')[4]
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span5.onclick = function () {
+  modal5.style.display = 'none'
 }
 
-////////////////////////////////////////////////////////////////////////6
+/// /////////////////////////////////////////////////////////////////////6
 
-var modal = document.getElementById("myModal6");
+const modal6 = document.getElementById('myModal6')
 
-var img = document.getElementById("myImg6");
-var modalImg = document.getElementById("img06");
-var captionText = document.getElementById("caption6");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
+const img6 = document.getElementById('myImg6')
+const modalImg6 = document.getElementById('img06')
+const captionText6 = document.getElementById('caption6')
+img6.onclick = function () {
+  modal6.style.display = 'block'
+  modalImg6.src = this.src
+  captionText6.innerHTML = this.alt
 }
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[5];
+const span6 = document.getElementsByClassName('close')[5]
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span6.onclick = function () {
+  modal6.style.display = 'none'
 }
 
-////////////////////////////////////////////////////////////////////////7
+/// /////////////////////////////////////////////////////////////////////7
 
-var modal = document.getElementById("myModal7");
+const modal7 = document.getElementById('myModal7')
 
-var img = document.getElementById("myImg7");
-var modalImg = document.getElementById("img07");
-var captionText = document.getElementById("caption7");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
+const img7 = document.getElementById('myImg7')
+const modalImg7 = document.getElementById('img07')
+const captionText7 = document.getElementById('caption7')
+img7.onclick = function () {
+  modal7.style.display = 'block'
+  modalImg7.src = this.src
+  captionText7.innerHTML = this.alt
 }
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[6];
+const span7 = document.getElementsByClassName('close')[6]
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span7.onclick = function () {
+  modal7.style.display = 'none'
 }
 
-////////////////////////////////////////////////////////////////////////8
+/// /////////////////////////////////////////////////////////////////////8
 
-var modal = document.getElementById("myModal8");
+const modal8 = document.getElementById('myModal8')
 
-var img = document.getElementById("myImg8");
-var modalImg = document.getElementById("img08");
-var captionText = document.getElementById("caption8");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
+const img8 = document.getElementById('myImg8')
+const modalImg8 = document.getElementById('img08')
+const captionText8 = document.getElementById('caption8')
+img8.onclick = function () {
+  modal8.style.display = 'block'
+  modalImg8.src = this.src
+  captionText8.innerHTML = this.alt
 }
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[7];
+const span8 = document.getElementsByClassName('close')[7]
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span8.onclick = function () {
+  modal8.style.display = 'none'
 }
 
-////////////////////////////////////////////////////////////////////////9
+/// /////////////////////////////////////////////////////////////////////9
 
-var modal = document.getElementById("myModal9");
+const modal9 = document.getElementById('myModal9')
 
-var img = document.getElementById("myImg9");
-var modalImg = document.getElementById("img09");
-var captionText = document.getElementById("caption9");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
+const img9 = document.getElementById('myImg9')
+const modalImg9 = document.getElementById('img09')
+const captionText9 = document.getElementById('caption9')
+img9.onclick = function () {
+  modal9.style.display = 'block'
+  modalImg9.src = this.src
+  captionText9.innerHTML = this.alt
 }
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[8];
+const span9 = document.getElementsByClassName('close')[8]
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span9.onclick = function () {
+  modal9.style.display = 'none'
 }

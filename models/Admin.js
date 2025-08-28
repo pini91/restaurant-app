@@ -1,4 +1,4 @@
-//const bcrypt = require('bcrypt')
+// const bcrypt = require('bcrypt')
 // const mongoose = require('mongoose')
 
 // const AdminSchema = new mongoose.Schema({
@@ -6,9 +6,8 @@
 //   password: String
 // })
 
-
 // Password hash middleware.
- 
+
 //  UserSchema.pre('save', function save(next) {
 //   const user = this
 //   if (!user.isModified('password')) { return next() }
@@ -22,7 +21,6 @@
 //   })
 // })
 
-
 // // Helper method for validating user's password.
 
 // UserSchema.methods.comparePassword = function comparePassword(candidatePassword, cb) {
@@ -31,5 +29,4 @@
 //   })
 // }
 
-
-//module.exports = mongoose.model('Admin', AdminSchema )
+// module.exports = mongoose.model('Admin', AdminSchema )

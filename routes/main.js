@@ -1,50 +1,45 @@
-const express = require("express");
-const router = express.Router();
-const mainController = require("../controllers/main");
-const tableController = require("../controllers/table");
-const editReservationController = require("../controllers/editReservation");
-const admin = require("../controllers/admin");
-const { ensureAuth  } = require('../middleware/auth')
-const { isAdmin  } = require('../middleware/auth')
+const express = require('express')
+const router = express.Router()
+const mainController = require('../controllers/main')
+const tableController = require('../controllers/table')
+const editReservationController = require('../controllers/editReservation')
+const admin = require('../controllers/admin')
+const { ensureAuth } = require('../middleware/auth')
+const { isAdmin } = require('../middleware/auth')
 
+// Main Routes
+router.get('/', mainController.getIndex)
 
+router.get('/tables', ensureAuth, tableController.getTable) //, ensureAuth is gonna check for authentication, it checks to make sure that you are logged in
 
-//Main Routes 
-router.get("/", mainController.getIndex);
+router.get('/final', ensureAuth, tableController.getFinal)
 
+router.get('/editReservation', ensureAuth, editReservationController.geteditReservationForm)
 
-router.get("/tables",ensureAuth, tableController.getTable); //, ensureAuth is gonna check for authentication, it checks to make sure that you are logged in 
+router.get('/tableToEdit', ensureAuth, editReservationController.getTableToEdit)
 
-router.get("/final",ensureAuth, tableController.getFinal)
+router.get('/finalEdit', ensureAuth, editReservationController.getFinalEdit)
 
-router.get("/editReservation",ensureAuth, editReservationController.geteditReservationForm)
+router.get('/makeChanges', ensureAuth, editReservationController.getEditForm)
 
-router.get("/tableToEdit", ensureAuth, editReservationController.getTableToEdit)
+router.get('/reservationDeleted', editReservationController.getReservationDeleted)
 
-router.get("/finalEdit", ensureAuth, editReservationController.getFinalEdit)
+router.get('/adminLog', admin.getAdminPage)
 
-router.get("/makeChanges", ensureAuth, editReservationController.getEditForm)
+router.get('/reservations', ensureAuth, isAdmin, admin.getReservations)
 
-router.get("/reservationDeleted", editReservationController.getReservationDeleted)
+router.get('/menu', mainController.getMenu)
 
-router.get("/adminLog", admin.getAdminPage)
-                    
-router.get("/reservations",ensureAuth, isAdmin, admin.getReservations)
+router.get('/breakfast', mainController.getBreakfast)
 
-router.get("/menu", mainController.getMenu);
+router.get('/lunch', mainController.getLunch)
 
-router.get("/breakfast", mainController.getBreakfast);
+router.get('/dinner', mainController.getDinner)
 
-router.get("/lunch", mainController.getLunch);
+router.get('/gallery', mainController.getGallery)
 
-router.get("/dinner", mainController.getDinner);
+router.get('/location', mainController.getLocation)
 
-router.get("/gallery", mainController.getGallery);
+router.get('/logOut', admin.logOut)
 
-router.get("/location", mainController.getLocation);
-
-router.get("/logOut", admin.logOut)
-
-
-module.exports = router;
-
+module.exports = router
