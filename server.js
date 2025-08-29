@@ -38,7 +38,6 @@ app.use(helmet(helmetConfig))
 // Rate limiting
 app.use(generalLimiter)
 
-
 // CORS configuration
 app.use(cors(corsConfig))
 
@@ -102,7 +101,7 @@ app.use(passport.session()) // has to do with the serialize and deserialize user
 
 app.use(flash())
 
-app.use('/',mainRoutes)
+app.use('/', mainRoutes)
 app.use('/bookForm', bookFormRoutes)
 app.use('/edit', editReservationRoutes)
 app.use('/admin', adminRoutes)
