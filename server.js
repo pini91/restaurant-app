@@ -25,7 +25,18 @@ require('./config/passport')(passport) // CAMBIE (PASSPORT DE ESTAR COMENTADO)
 connectDB() // Here is where we are calling our function for connection to the database.
 
 // Security middleware
-app.use(helmet())
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "https://kit.fontawesome.com"],
+      styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com", "https://ka-f.fontawesome.com"],
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'"]
+    }
+  }
+}))
 
 // CORS configuration
 app.use(cors())
