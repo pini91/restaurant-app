@@ -6,6 +6,7 @@ const MongoStore = require('connect-mongo')
 const methodOverride = require('method-override') // we need this middleware so that we are able to override the method to (PUT/DELETE)
 const flash = require('express-flash')
 const logger = require('morgan') // morgan is our logger or very simple kind of debugger. and what is showing us is our log here
+const helmet = require('helmet')
 const cors = require('cors')
 const { validateEnvironment } = require('./config/environment')
 const { generalLimiter, helmetConfig, corsConfig } = require('./config/security')
