@@ -8,7 +8,7 @@ const flash = require('express-flash')
 const logger = require('morgan') // morgan is our logger or very simple kind of debugger. and what is showing us is our log here
 const cors = require('cors')
 const { validateEnvironment } = require('./config/environment')
-const { corsConfig } = require('./config/security')
+const { generalLimiter, helmetConfig, corsConfig } = require('./config/security')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const bookFormRoutes = require('./routes/bookForm')
@@ -30,6 +30,12 @@ validateEnvironment()
 require('./config/passport')(passport) // CAMBIE (PASSPORT DE ESTAR COMENTADO)
 
 connectDB() // Here is where we are calling our function for connection to the database.
+
+// Security middleware
+app.use(helmet(helmetConfig))
+
+// Rate limiting
+app.use(generalLimiter)
 
 // CORS configuration
 app.use(cors(corsConfig))
