@@ -38,8 +38,12 @@ app.use(helmet(helmetConfig))
 // Rate limiting
 app.use(generalLimiter)
 
+
 // CORS configuration
 app.use(cors(corsConfig))
+
+// Health check route for Railway
+app.get('/', (req, res) => res.send('OK'))
 
 // Using EJS for views
 app.set('view engine', 'ejs')
@@ -74,7 +78,7 @@ const sessionStore = MongoStore.create({
 
 app.use( // we declare it after express.static, this sessions are gonna keep us logged in throughout different pages.
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || 'fallback-secret-key-for-development',
     resave: false,
     saveUninitialized: false, //  you wanna make sure its set to false if you have a login system, otherwise is gonna generate a new session id every single time they make a request to your server
     // store: MongoStore.create({ mongoUrl: process.env.DB_STRING }),
@@ -98,7 +102,7 @@ app.use(passport.session()) // has to do with the serialize and deserialize user
 
 app.use(flash())
 
-app.use('/', mainRoutes)
+app.use('/',mainRoutes)
 app.use('/bookForm', bookFormRoutes)
 app.use('/edit', editReservationRoutes)
 app.use('/admin', adminRoutes)
