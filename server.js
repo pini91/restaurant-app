@@ -31,7 +31,7 @@ app.use(helmet())
 app.use(cors())
 
 // Health check route for Railway
-app.get('/', (req, res) => res.send('OK'))
+app.get('/health', (req, res) => res.send('OK'))
 
 // Using EJS for views
 app.set('view engine', 'ejs')
