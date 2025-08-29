@@ -8,6 +8,7 @@ const flash = require('express-flash')
 const logger = require('morgan') // morgan is our logger or very simple kind of debugger. and what is showing us is our log here
 const cors = require('cors')
 const { validateEnvironment } = require('./config/environment')
+const { corsConfig } = require('./config/security')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const bookFormRoutes = require('./routes/bookForm')
@@ -18,7 +19,6 @@ const adminRoutes = require('./routes/admin')
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config({ path: './config/.env' })
 }
-
 
 // Validate environment variables
 validateEnvironment()
@@ -65,13 +65,12 @@ const sessionStore = MongoStore.create({
   stringify: false
 })
 
-
 app.use( // we declare it after express.static, this sessions are gonna keep us logged in throughout different pages.
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false, //  you wanna make sure its set to false if you have a login system, otherwise is gonna generate a new session id every single time they make a request to your server
-    store: MongoStore.create({ mongoUrl: process.env.DB_STRING }),
+    // store: MongoStore.create({ mongoUrl: process.env.DB_STRING }),
     cookie: {
       maxAge: 1000 * 60 * 60 * 24, // equals 1 day (1day *24hrs/1dday *60mi)
       secure: false, // Set to false for development to work with HTTP
