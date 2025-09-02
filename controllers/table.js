@@ -31,32 +31,35 @@ module.exports = {
 
       // FUNCTION FOR THE EMAIL RESERVATION
       async function main () {
-        console.log('Starting email send...')
-        console.log(console.log(response[0].email))
-        // create reusable transporter object using the default SMTP transport
-        const transporter = nodemailer.createTransport({
-          host: 'smtp-relay.brevo.com',
-          secure: false, // true for 465, false for other ports
-          auth: {
-            user: process.env.EMAIL_USER, // generated brevo user
-            pass: process.env.EMAIL_PASS // generated brevo password
-          }
-        })
+        try {
+          console.log('Starting email send...')
+          console.log('Email recipient:', response[0].email)
 
-        // send mail with defined transport object
-        const info = await transporter.sendMail({
-          from: 'testingmyaps@gmail.com', // sender address
-          to: `${response[0].email}`, // receiver
-          subject: 'RESTAURANT RESERVATION ✔', // Subject line
-          text: `Hello <b>${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLocaleLowerCase()}!</b>\n\n,
-           Your reservation number at Health and Taste for <b>${response[0].date}</b>, in table: <b>${response[0].table}</b> at <b>${response[0].hour}</b> is: <b>${response[0].id}.
-           To edit or delete your reservation click the link below to reset your password:\n\n: 
-           http://health-and-taste.up.railway.app/edit`// plain text body
-        })
+          // create reusable transporter object using the default SMTP transport
+          const transporter = nodemailer.createTransport({
+            host: 'smtp-relay.brevo.com',
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+              user: process.env.EMAIL_USER, // generated brevo user
+              pass: process.env.EMAIL_PASSWORD // fixed environment variable name
+            }
+          })
 
-        console.log('Message sent: %s', info.messageId)
-        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-        // console.log(response[0].email)
+          // send mail with defined transport object
+          const info = await transporter.sendMail({
+            from: 'testingmyaps@gmail.com', // sender address
+            to: response[0].email, // receiver (removed template literal since it's already a string)
+            subject: 'RESTAURANT RESERVATION ✔', // Subject line
+            text: `Hello ${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase()}!\n\nYour reservation number at Health and Taste for ${response[0].date}, in table: ${response[0].table} at ${response[0].hour} is: ${response[0].id}.\n\nTo edit or delete your reservation click the link below:\n\nhttp://health-and-taste.up.railway.app/edit`
+          })
+
+          console.log('Message sent: %s', info.messageId)
+          return info
+        } catch (emailError) {
+          console.error('Email sending failed:', emailError)
+          throw emailError
+        }
       }
 
       main().catch(console.error)
