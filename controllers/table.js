@@ -46,7 +46,7 @@ module.exports = {
           })
 
           // send mail with defined transport object
-          const info = await transporter.sendMail({ 
+          const info = await transporter.sendMail({
             from: 'testingmyaps@gmail.com',
             to: response[0].email,
             subject: 'RESTAURANT RESERVATION ✔',
@@ -57,7 +57,7 @@ module.exports = {
           // return info
 
           // RENDERING THE LAST PAGE
-        res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
+          res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
         } catch (emailError) {
           console.error('Email sending failed:', emailError)
         }
