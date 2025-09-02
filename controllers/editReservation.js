@@ -137,7 +137,7 @@ module.exports = {
           from: 'testingmyaps@gmail.com', // sender address
           to: `${response[0].email}`, // receiver
           subject: 'RESTAURANT RESERVATION ✔', // Subject line
-          text: `Hello ${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLocaleLowerCase()} , You have changed your reservation. Your reservation number at Health and Taste for ${response[0].date} in table: ${response[0].table} at ${response[0].hour} is: ${response[0].id} to edit or delete your reservation go to: http://localhost:2121/edit `
+          text: `Hello ${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase()} , You have changed your reservation. Your reservation number at Health and Taste for ${response[0].date} in table: ${response[0].table} at ${response[0].hour} is: ${response[0].id} to edit or delete your reservation go to: https://health-and-taste.up.railway.app/edit `
         })
 
         console.log('Message sent: %s', info.messageId)
