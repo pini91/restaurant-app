@@ -36,6 +36,9 @@ module.exports = {
           const transporter = nodemailer.createTransport({
             host: 'smtp-relay.brevo.com',
             secure: false, // true for 465, false for other ports
+            connectionTimeout: 10000, // 10 seconds timeout
+            greetingTimeout: 5000, // 5 seconds
+            socketTimeout: 10000, // 10 seconds
             auth: {
               user: process.env.EMAIL_USER, // generated brevo user
               pass: process.env.EMAIL_PASS // generated brevo password
@@ -54,12 +57,40 @@ module.exports = {
           return info
         } catch (emailError) {
           console.error('Email sending failed:', emailError)
+          console.log('=== RESERVATION DETAILS FOR MANUAL EMAIL ===')
+          console.log('Customer:', response[0].name)
+          console.log('Email:', response[0].email)
+          console.log('Date:', response[0].date)
+          console.log('Time:', response[0].hour)
+          console.log('Table:', response[0].table)
+          console.log('Reservation ID:', response[0].id)
+          console.log('==========================================')
           return null
         }
       }
 
-      // AWAIT the email function
-      await main()
+      // Add a timeout wrapper for the email function
+      const emailWithTimeout = () => {
+        return Promise.race([
+          main(),
+          new Promise((resolve, reject) =>
+            setTimeout(() => reject(new Error('Email timeout after 15 seconds')), 15000)
+          )
+        ])
+      } // Try to send email with timeout, but don't block the page
+      try {
+        await emailWithTimeout()
+      } catch (timeoutError) {
+        console.log('Email function timed out, continuing with page render')
+        console.log('=== RESERVATION DETAILS FOR MANUAL EMAIL ===')
+        console.log('Customer:', response[0].name)
+        console.log('Email:', response[0].email)
+        console.log('Date:', response[0].date)
+        console.log('Time:', response[0].hour)
+        console.log('Table:', response[0].table)
+        console.log('Reservation ID:', response[0].id)
+        console.log('==========================================')
+      }
 
       // RENDERING THE LAST PAGE (after email is sent)
       res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
