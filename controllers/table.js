@@ -46,9 +46,10 @@ module.exports = {
           from: 'testingmyaps@gmail.com', // sender address
           to: `${response[0].email}`, // receiver
           subject: 'RESTAURANT RESERVATION ✔', // Subject line
-          text: `Hello <b>${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLocaleLowerCase()}!</b> ,
-           Your reservation number at Health and Taste for <b>${response[0].date}</b>, in table: <b>${response[0].table}</b> at <b>${response[0].hour}</b> is: <b>${response[0].id}</b>.
-           To edit or delete your reservation go to: http://pet-social-app.up.railway.app/edit`// plain text body
+          text: `Hello <b>${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLocaleLowerCase()}!</b>\n\n,
+           Your reservation number at Health and Taste for <b>${response[0].date}</b>, in table: <b>${response[0].table}</b> at <b>${response[0].hour}</b> is: <b>${response[0].id}.
+           To edit or delete your reservation click the link below to reset your password:\n\n: 
+           http://health-and-taste.up.railway.app/edit`// plain text body
         })
 
         console.log('Message sent: %s', info.messageId)
