@@ -25,7 +25,7 @@ async function tableNumber () {
       alert('Table is busy, please pick another hour or table')
       // location.reload()
     } else {
-      window.location.href = 'http://localhost:2121/final'
+      window.location.href = '/final'
     }
   } catch (err) {
     console.log(err)
