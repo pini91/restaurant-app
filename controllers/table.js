@@ -25,6 +25,9 @@ module.exports = {
       // GETTING THE LAST RESERVATION ID
       const response = await Reservation.find({ userID: req.user.id })
       console.log(`FROM RESPONSE IN FINAL${response}`)
+      
+      // RENDERING THE LAST PAGE
+      res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
 
       // FUNCTION FOR THE EMAIL RESERVATION
       async function main () {
@@ -58,8 +61,6 @@ module.exports = {
       }
       main().catch(console.error)
 
-      // RENDERING THE LAST PAGE
-      res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
       // DELETING THE USERID
       if (!req.user.isAdmin) {
         await Users.findOneAndDelete({ _id: response[0].userID })
