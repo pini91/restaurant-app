@@ -26,8 +26,8 @@ module.exports = {
       const response = await Reservation.find({ userID: req.user.id })
       console.log(`FROM RESPONSE IN FINAL${response}`)
 
-      // RENDERING THE LAST PAGE
-      res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
+      // // RENDERING THE LAST PAGE
+      // res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
 
       // FUNCTION FOR THE EMAIL RESERVATION
       async function main () {
@@ -46,7 +46,7 @@ module.exports = {
           })
 
           // send mail with defined transport object
-          const info = transporter.sendMail({ // await
+          const info = await transporter.sendMail({ 
             from: 'testingmyaps@gmail.com',
             to: response[0].email,
             subject: 'RESTAURANT RESERVATION ✔',
@@ -54,7 +54,10 @@ module.exports = {
           })
 
           console.log('Message sent: %s', info.messageId)
-          return info
+          // return info
+
+          // RENDERING THE LAST PAGE
+        res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
         } catch (emailError) {
           console.error('Email sending failed:', emailError)
         }
