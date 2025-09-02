@@ -26,9 +26,6 @@ module.exports = {
       const response = await Reservation.find({ userID: req.user.id })
       console.log(`FROM RESPONSE IN FINAL${response}`)
 
-      // RENDERING THE LAST PAGE
-      res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
-
       // FUNCTION FOR THE EMAIL RESERVATION
       async function main () {
         try {
@@ -38,11 +35,11 @@ module.exports = {
           // Try alternative SMTP settings for Brevo
           const transporter = nodemailer.createTransport({
             host: 'smtp-relay.brevo.com',
-            port: 465, // Trying SSL port instead
-            secure: true, // Use SSL
+            // port: 465, // Trying SSL port instead
+            secure: false,// true for 465, false for other ports
             auth: {
               user: process.env.EMAIL_USER,
-              pass: process.env.EMAIL_PASSWORD
+              pass: process.env.EMAIL_PASS
             },
             connectionTimeout: 60000, // 60 seconds
             greetingTimeout: 30000, // 30 seconds
@@ -61,21 +58,12 @@ module.exports = {
           return info
         } catch (emailError) {
           console.error('Email sending failed:', emailError)
-
-          // Fallback: Log the email details for manual processing
-          console.log('EMAIL FALLBACK - Please send manually:')
-          console.log('To:', response[0].email)
-          console.log('Subject: RESTAURANT RESERVATION')
-          console.log('Reservation ID:', response[0].id)
-          console.log('Date:', response[0].date)
-          console.log('Table:', response[0].table)
-          console.log('Time:', response[0].hour)
-
-          // Don't throw error to prevent breaking the reservation flow
-          return null
         }
-      } main().catch(console.error)
+      } 
+      main().catch(console.error)
 
+      // RENDERING THE LAST PAGE
+      res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
       // DELETING THE USERID
       if (!req.user.isAdmin) {
         await Users.findOneAndDelete({ _id: response[0].userID })

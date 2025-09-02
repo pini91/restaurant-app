@@ -128,7 +128,7 @@ module.exports = {
           secure: false, // true for 465, false for other ports
           auth: {
             user: process.env.EMAIL_USER, // generated brevo user
-            pass: process.env.EMAIL_PASSWORD // fixed environment variable name
+            pass: process.env.EMAIL_PASS // fixed environment variable name
           }
         })
 
@@ -146,6 +146,8 @@ module.exports = {
       }
 
       main().catch(console.error)
+
+      req.flash('info', 'An email has been sent with further instructions.')
 
       // DELETING THE USERID or removing the reservation from the admin
       if (req.user.isAdmin) {
@@ -167,6 +169,7 @@ module.exports = {
       }
     } catch (err) {
       console.log(err)
+      req.flash('error', 'Error sending reset email. Please try again.')
     }
   },
 
