@@ -127,8 +127,8 @@ module.exports = {
           host: 'smtp-relay.brevo.com',
           secure: false, // true for 465, false for other ports
           auth: {
-            user: '7f966a001@smtp-brevo.com', // generated brevo user
-            pass: 'JpKBDFjGWQqfPdya' // generated brevo password
+            user: process.env.EMAIL_USER, // generated brevo user
+            pass: process.env.EMAIL_PASSWORD // fixed environment variable name
           }
         })
 

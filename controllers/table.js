@@ -35,22 +35,25 @@ module.exports = {
           console.log('Starting email send...')
           console.log('Email recipient:', response[0].email)
 
-          // create reusable transporter object using the default SMTP transport
+          // Try alternative SMTP settings for Brevo
           const transporter = nodemailer.createTransport({
             host: 'smtp-relay.brevo.com',
-            port: 587,
-            secure: false, // true for 465, false for other ports
+            port: 465, // Trying SSL port instead
+            secure: true, // Use SSL
             auth: {
-              user: process.env.EMAIL_USER, // generated brevo user
-              pass: process.env.EMAIL_PASSWORD // fixed environment variable name
-            }
+              user: process.env.EMAIL_USER,
+              pass: process.env.EMAIL_PASSWORD
+            },
+            connectionTimeout: 60000, // 60 seconds
+            greetingTimeout: 30000, // 30 seconds
+            socketTimeout: 60000 // 60 seconds
           })
 
           // send mail with defined transport object
           const info = await transporter.sendMail({
-            from: 'testingmyaps@gmail.com', // sender address
-            to: response[0].email, // receiver (removed template literal since it's already a string)
-            subject: 'RESTAURANT RESERVATION ✔', // Subject line
+            from: 'testingmyaps@gmail.com',
+            to: response[0].email,
+            subject: 'RESTAURANT RESERVATION ✔',
             text: `Hello ${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase()}!\n\nYour reservation number at Health and Taste for ${response[0].date}, in table: ${response[0].table} at ${response[0].hour} is: ${response[0].id}.\n\nTo edit or delete your reservation click the link below:\n\nhttp://health-and-taste.up.railway.app/edit`
           })
 
@@ -58,11 +61,20 @@ module.exports = {
           return info
         } catch (emailError) {
           console.error('Email sending failed:', emailError)
-          throw emailError
-        }
-      }
 
-      main().catch(console.error)
+          // Fallback: Log the email details for manual processing
+          console.log('EMAIL FALLBACK - Please send manually:')
+          console.log('To:', response[0].email)
+          console.log('Subject: RESTAURANT RESERVATION')
+          console.log('Reservation ID:', response[0].id)
+          console.log('Date:', response[0].date)
+          console.log('Table:', response[0].table)
+          console.log('Time:', response[0].hour)
+
+          // Don't throw error to prevent breaking the reservation flow
+          return null
+        }
+      } main().catch(console.error)
 
       // DELETING THE USERID
       if (!req.user.isAdmin) {
