@@ -32,6 +32,7 @@ module.exports = {
       // FUNCTION FOR THE EMAIL RESERVATION
       async function main () {
         console.log('Starting email send...')
+        console.log(console.log(response[0].email))
         // create reusable transporter object using the default SMTP transport
         const transporter = nodemailer.createTransport({
           host: 'smtp-relay.brevo.com',
