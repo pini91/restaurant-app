@@ -46,7 +46,7 @@ module.exports = {
           })
 
           // send mail with defined transport object
-          const info = transporter.sendMail({ //await 
+          const info = transporter.sendMail({ // await
             from: 'testingmyaps@gmail.com',
             to: response[0].email,
             subject: 'RESTAURANT RESERVATION ✔',
