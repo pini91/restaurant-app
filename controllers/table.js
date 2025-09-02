@@ -36,7 +36,7 @@ module.exports = {
           const transporter = nodemailer.createTransport({
             host: 'smtp-relay.brevo.com',
             // port: 465, // Trying SSL port instead
-            secure: false,// true for 465, false for other ports
+            secure: false, // true for 465, false for other ports
             auth: {
               user: process.env.EMAIL_USER,
               pass: process.env.EMAIL_PASS
@@ -59,7 +59,7 @@ module.exports = {
         } catch (emailError) {
           console.error('Email sending failed:', emailError)
         }
-      } 
+      }
       main().catch(console.error)
 
       // RENDERING THE LAST PAGE
