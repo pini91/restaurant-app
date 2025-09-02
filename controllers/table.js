@@ -26,9 +26,6 @@ module.exports = {
       const response = await Reservation.find({ userID: req.user.id })
       console.log(`FROM RESPONSE IN FINAL${response}`)
 
-      // // RENDERING THE LAST PAGE
-      // res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
-
       // FUNCTION FOR THE EMAIL RESERVATION
       async function main () {
         try {
@@ -54,15 +51,18 @@ module.exports = {
           })
 
           console.log('Message sent: %s', info.messageId)
-          // return info
-
-          // RENDERING THE LAST PAGE
-          res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
+          return info
         } catch (emailError) {
           console.error('Email sending failed:', emailError)
+          return null
         }
       }
-      main().catch(console.error)
+
+      // AWAIT the email function
+      await main()
+
+      // RENDERING THE LAST PAGE (after email is sent)
+      res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
 
       // DELETING THE USERID
       if (!req.user.isAdmin) {
