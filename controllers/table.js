@@ -25,7 +25,7 @@ module.exports = {
       // GETTING THE LAST RESERVATION ID
       const response = await Reservation.find({ userID: req.user.id })
       console.log(`FROM RESPONSE IN FINAL${response}`)
-      
+
       // RENDERING THE LAST PAGE
       res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
 
