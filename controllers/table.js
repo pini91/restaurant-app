@@ -32,18 +32,14 @@ module.exports = {
           console.log('Starting email send...')
           console.log('Email recipient:', response[0].email)
 
-          // Try alternative SMTP settings for Brevo
+          // create reusable transporter object using the default SMTP transport
           const transporter = nodemailer.createTransport({
             host: 'smtp-relay.brevo.com',
-            // port: 465, // Trying SSL port instead
             secure: false, // true for 465, false for other ports
             auth: {
-              user: process.env.EMAIL_USER,
-              pass: process.env.EMAIL_PASS
-            },
-            connectionTimeout: 60000, // 60 seconds
-            greetingTimeout: 30000, // 30 seconds
-            socketTimeout: 60000 // 60 seconds
+              user: process.env.EMAIL_USER, // generated brevo user
+              pass: process.env.EMAIL_PASS // generated brevo password
+            }
           })
 
           // send mail with defined transport object
