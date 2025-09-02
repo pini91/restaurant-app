@@ -27,7 +27,7 @@ module.exports = {
       console.log(`FROM RESPONSE IN FINAL${response}`)
 
       // RENDERING THE LAST PAGE
-      res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLocaleLowerCase(), id: response[0].id })
+      res.render('final.ejs', { name: response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase(), id: response[0].id })
 
       // FUNCTION FOR THE EMAIL RESERVATION
       async function main () {
@@ -37,7 +37,7 @@ module.exports = {
           secure: false, // true for 465, false for other ports
           auth: {
             user: process.env.EMAIL_USER, // generated brevo user
-            pass: process.env.EMAIL_PASSWORD // generated brevo password
+            pass: process.env.EMAIL_PASS // generated brevo password
           }
         })
 
@@ -46,9 +46,9 @@ module.exports = {
           from: 'testingmyaps@gmail.com', // sender address
           to: `${response[0].email}`, // receiver
           subject: 'RESTAURANT RESERVATION ✔', // Subject line
-          text: `Hello ${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLocaleLowerCase()}!, 
-            Your reservation number at Health and Taste for ${response[0].date}, in table: ${response[0].table} at ${response[0].hour} is: ${response[0].id}.
-            To edit or delete your reservation go to: http://localhost:2121/edit` // plain text body
+          text: `Hello <b>${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLocaleLowerCase()}!</b> ,
+           Your reservation number at Health and Taste for <b>${response[0].date}</b>, in table: <b>${response[0].table}</b> at <b>${response[0].hour}</b> is: <b>${response[0].id}</b>.
+           To edit or delete your reservation go to: http://pet-social-app.up.railway.app/edit`// plain text body
         })
 
         console.log('Message sent: %s', info.messageId)
