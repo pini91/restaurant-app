@@ -24,7 +24,7 @@ async function tableNumber () {
     if (data === 'failed') {
       alert('Table is busy, please pick another hour or table')
     } else {
-      window.location.href = 'http://localhost:2121/finalEdit'
+      window.location.href = 'http://health-and-taste.up.railway.app/finalEdit'
     }
   } catch (err) {
     console.log(err)
