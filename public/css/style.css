@@ -477,5 +477,10 @@ footer{
         display: none;
      } 
 
+     .socialMedia{
+        display: flex;
+        flex-direction: column;
+     }
+
 }
 

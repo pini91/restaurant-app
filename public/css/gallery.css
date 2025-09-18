@@ -25,9 +25,13 @@ div{
 
 .homeButton{
     background-color: rgb(255, 255, 255);
-    color: rgb(94, 9, 10);
     border-radius: 10px;
     margin: 1%;
+    max-width: 10px;
+    max-height: 10px;
+}
+.homeButton a{
+    color: rgb(94, 9, 10);
 }
 .homeButton:hover{
     background-color: rgb(128, 127, 127);
