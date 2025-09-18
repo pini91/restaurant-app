@@ -3,7 +3,7 @@ module.exports = {
     res.render('index.ejs')
   },
   getReservationsRedirect: (req, res) => {
-    res.render('redirectReservations')
+    res.render('redirectReservations.ejs')
   },
   getMenu: (req, res) => {
     res.render('menu.ejs')
