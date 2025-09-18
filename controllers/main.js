@@ -2,6 +2,9 @@ module.exports = {
   getIndex: (req, res) => {
     res.render('index.ejs')
   },
+  getReservations: (req, res) => {
+    res.render('redirectReservations.ejs')
+  },
   getMenu: (req, res) => {
     res.render('menu.ejs')
   },

@@ -19,6 +19,8 @@ router.get('/health', (req, res) => {
   })
 })
 
+router.get('/reservations', mainController.getReservations)
+
 router.get('/tables', ensureAuth, tableController.getTable) //, ensureAuth is gonna check for authentication, it checks to make sure that you are logged in
 
 router.get('/final', ensureAuth, tableController.getFinal)
@@ -50,5 +52,6 @@ router.get('/gallery', mainController.getGallery)
 router.get('/location', mainController.getLocation)
 
 router.get('/logOut', admin.logOut)
+
 
 module.exports = router
