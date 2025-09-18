@@ -19,7 +19,7 @@ router.get('/health', (req, res) => {
   })
 })
 
-router.get('/reservations', mainController.getReservations)
+router.get('/reservationsRedirect', mainController.getReservationsRedirect)
 
 router.get('/tables', ensureAuth, tableController.getTable) //, ensureAuth is gonna check for authentication, it checks to make sure that you are logged in
 
