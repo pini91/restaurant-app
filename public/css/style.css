@@ -1,6 +1,9 @@
 *{
     box-sizing: border-box;
+}
 
+body {
+    overflow-x: hidden;
 }
 
 *, *::before, *::after{
@@ -376,14 +379,22 @@ footer{
 
 
 @media screen and (max-width: 600px){
+    main {
+        width: 100%;
+        overflow-x: hidden;
+    }
+    
     main ul li{
         display: none;
     }
 
     #hambi{
-        display:flex;
+        display: flex;
         position: fixed;
+        top: 20px;
+        right: 20px;
         cursor: pointer;
+        z-index: 1000;
     }
 
 
