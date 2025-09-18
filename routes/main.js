@@ -53,5 +53,4 @@ router.get('/location', mainController.getLocation)
 
 router.get('/logOut', admin.logOut)
 
-
 module.exports = router
