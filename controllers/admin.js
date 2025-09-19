@@ -9,7 +9,7 @@ module.exports = {
     res.render('adminLogIn.ejs')
   },
 
-  getgetSignUpPage: (req, res) => {
+  getSignUpPage: (req, res) => {
     res.render('adminSignUp.ejs')
   },
 
