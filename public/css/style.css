@@ -390,6 +390,7 @@ footer{
 
     #hambi{
         display: flex;
+        justify-content: end;
         position: fixed;
         top: 20px;
         right: 20px;
