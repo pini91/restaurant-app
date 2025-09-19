@@ -129,6 +129,13 @@ module.exports = {
       const tableNum = req.body.tableNumFromJSFile
       console.log(tableNum)
 
+      // checking if the table is too small for the group
+      const tableGroup = tableNum.split('')
+
+      if (Number(tableGroup) !== newReservation[0].partySize) {
+        res.json('tooSmall')
+      }
+
       // if there is reservations other than the current; see if that table and table is busy
       if (all.length) {
         console.log(all)
