@@ -25,6 +25,8 @@ module.exports = {
       // GETTING THE LAST RESERVATION ID
       const response = await Reservation.find({ userID: req.user.id })
       console.log(`FROM RESPONSE IN FINAL${response}`)
+      const response2 = await Reservation.findOne({ userID: req.user.id })
+      console.log(response2)
 
       // FUNCTION FOR THE EMAIL RESERVATION
       async function main () {
