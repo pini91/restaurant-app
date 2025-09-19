@@ -9,6 +9,10 @@ module.exports = {
     res.render('adminLogIn.ejs')
   },
 
+  getgetSignUpPage: (req, res) => {
+    res.render('adminSignUp.ejs')
+  },
+
   getSignup: async (req, res, next) => {
     const validationErrors = []
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })

@@ -5,7 +5,7 @@ module.exports = function (passport) {
   passport.use(new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
     const user = await User.findOne({ email: email.toLowerCase() }) //, (err, user) => {
     console.log(`only user ${user}`)
-    console.log(`user[0] ${user.email}`)
+    // console.log(`user[0] ${user.email}`)
 
     // if (err) { return done(err) }
     if (!user) {

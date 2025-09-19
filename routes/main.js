@@ -35,6 +35,8 @@ router.get('/makeChanges', ensureAuth, editReservationController.getEditForm)
 
 router.get('/reservationDeleted', editReservationController.getReservationDeleted)
 
+router.get('/adminSignUp', admin.getSignUpPage)
+
 router.get('/adminLog', admin.getAdminPage)
 
 router.get('/reservations', ensureAuth, isAdmin, admin.getReservations)
