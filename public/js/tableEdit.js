@@ -23,6 +23,7 @@ async function tableNumber () {
 
     if (data === 'tooSmall') {
       alert('Please pick a table with seats for your group size')
+      location.reload()
     } else if (data === 'failed') {
       alert('Table is busy, please pick another hour or table')
     } else {
