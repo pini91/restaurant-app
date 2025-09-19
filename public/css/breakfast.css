@@ -105,8 +105,8 @@ h2{
 
   .menuButton:hover, .homeButton:active{
     /* color: #fff; */
-    background-color: #6c757d;
-    border-color: #6c757d;
+    background-color: #a2aab0;
+    border-color: #a2aab0;
 }
 
   .menuButton:focus {
