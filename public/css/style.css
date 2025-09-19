@@ -507,13 +507,14 @@ footer{
     }
 
     #hambi{
-        display: flex;
-        justify-content: end;
+        /* display: flex;
+        justify-content: end; */
         position: fixed;
         top: 20px;
         right: 20px;
         cursor: pointer;
         z-index: 1000;
+        /* margin-left: 10rem; */
     }
 
 
