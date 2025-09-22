@@ -125,10 +125,10 @@ module.exports = {
       // checking if the table is too small for the group
       let tableGroup = tableNum.split('')
 
-      const result = Math.abs((Number(tableGroup) - newReservation[0].partySize))
+      const result = Math.abs((Number(tableGroup[1]) - newReservation[0].partySize))
       console.log(`FROM RESULT ${result}`)
 
-      tableGroup = Math.abs((Number(tableGroup) - newReservation[0].partySize)) > 1
+      tableGroup = Math.abs((Number(tableGroup[1]) - newReservation[0].partySize)) > 1
       console.log(`FROM TABLEGROUP ${tableGroup}`)
 
       if (tableGroup) {
