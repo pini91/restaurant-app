@@ -136,7 +136,7 @@ module.exports = {
 
       console.log(`FROM TABLEGROUP (is table too small/big?): ${tableGroup}`)
 
-      if (tableGroup || tableCapacity < partySize) {
+      if (difference > 1 || tableCapacity < partySize) {
         console.log('Table is too small or too big for party size')
         res.json('tooSmall')
       } else {
