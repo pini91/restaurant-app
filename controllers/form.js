@@ -145,7 +145,7 @@ module.exports = {
           }
           console.log(result)
 
-          if (result || Number(tableGroup) !== newReservation[0].partySize) {
+          if (result) {
             console.log('failed, table is busy')
             res.json('failed')
           } else {
