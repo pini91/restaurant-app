@@ -2,7 +2,6 @@ const validator = require('validator')
 const Reservations = require('../models/Reservation')
 const User = require('../models/User')
 
-
 module.exports = {
 
   getForm: (req, res) => {
@@ -99,8 +98,6 @@ module.exports = {
 
   assignTable: async (req, res) => {
     // console.log(` THIS IS FROM ASSIGN TABLE${req.user}`)
-  
-   
 
     try {
       // GET THE USER INFORMATION FROM CURRENT SESION TO GET THE LATEST ID RESERVATION.
@@ -128,44 +125,43 @@ module.exports = {
       // checking if the table is too small for the group
       let tableGroup = tableNum.split('')
 
-      tableGroup = Math.abs((Number(tableGroup)-newReservation[0].partySize))>1?false :true
+      tableGroup = !(Math.abs((Number(tableGroup) - newReservation[0].partySize)) > 1)
       console.log(`FROM TABLEGROUP${tableGroup}`)
 
       if (tableGroup) {
         res.json('tooSmall')
-      }else{
+      } else {
         // if there is reservations other than the current; see if that table and table is busy
-      if (all.length) {
+        if (all.length) {
         // console.log(all)
-        let result = false
+          let result = false
 
-        for (const doc in all) {
+          for (const doc in all) {
           //   console.log(`FROM ALL DOCS ${all[doc]}`)
-          if (all[doc].date === newReservation[0].date && all[doc].hour === newReservation[0].hour && all[doc].table === tableNum) {
+            if (all[doc].date === newReservation[0].date && all[doc].hour === newReservation[0].hour && all[doc].table === tableNum) {
             // console.log(doc)
-            result = true
+              result = true
+            }
           }
-        }
-        console.log(result)
+          console.log(result)
 
-        if (result || Number(tableGroup) !== newReservation[0].partySize) {
-          console.log('failed, table is busy')
-          res.json('failed')
+          if (result || Number(tableGroup) !== newReservation[0].partySize) {
+            console.log('failed, table is busy')
+            res.json('failed')
+          } else {
+            console.log('Table is NOT busy')
+            await Reservations.findOneAndUpdate({ _id: newReservation[0].id }, { // TAKE A LOOK AT THIS
+              table: tableNum
+            })
+            res.json('success')
+          }
         } else {
-          console.log('Table is NOT busy')
+          console.log('This is the first reservation')
           await Reservations.findOneAndUpdate({ _id: newReservation[0].id }, { // TAKE A LOOK AT THIS
             table: tableNum
           })
           res.json('success')
         }
-      } else {
-        console.log('This is the first reservation')
-        await Reservations.findOneAndUpdate({ _id: newReservation[0].id }, { // TAKE A LOOK AT THIS
-          table: tableNum
-        })
-        res.json('success')
-      }
-        
       }
 
       // // if there is reservations other than the current; see if that table and table is busy
