@@ -14,9 +14,29 @@ module.exports = {
     console.log(` THIS IS FROM GET TABLE${req.user}`)
 
     try {
-      res.render('tables.ejs')
+      // Get the current user's reservation to get their selected date and time
+      const userReservation = await Reservation.findOne({ userID: req.user.id })
+
+      if (userReservation) {
+        // Get all busy tables for the same date and time
+        const busyReservations = await Reservation.find({
+          date: userReservation.date,
+          hour: userReservation.hour,
+          table: { $ne: 'none' }, // exclude unassigned tables
+          userID: { $ne: req.user.id } // exclude current user's reservation
+        }).select('table')
+
+        const busyTables = busyReservations.map(reservation => reservation.table)
+        console.log(`Busy tables for ${userReservation.date} at ${userReservation.hour}:`, busyTables)
+
+        res.render('tables.ejs', { busyTables })
+      } else {
+        // If no reservation found, render with empty busy tables
+        res.render('tables.ejs', { busyTables: [] })
+      }
     } catch (err) {
       console.log(err)
+      res.render('tables.ejs', { busyTables: [] }) // fallback
     }
   },
   // RENDER THE LAST PAGE

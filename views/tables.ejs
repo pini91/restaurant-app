@@ -19,48 +19,48 @@
           <div class="screen">View</div>
  
           <div class="row">
-            <div class="seat round">A2</div>
-            <div class="seat round">C2</div>
-            <div class="seat round">B2</div>
-            <div class="seat round">D2</div>
-            <div class="seat round">F2</div>
-            <div class="seat round">G2</div>
-            <div class="seat last-tables">H4</div>
+            <div class="seat round <%= busyTables.includes('A2') ? 'busy' : '' %>">A2</div>
+            <div class="seat round <%= busyTables.includes('C2') ? 'busy' : '' %>">C2</div>
+            <div class="seat round <%= busyTables.includes('B2') ? 'busy' : '' %>">B2</div>
+            <div class="seat round <%= busyTables.includes('D2') ? 'busy' : '' %>">D2</div>
+            <div class="seat round <%= busyTables.includes('F2') ? 'busy' : '' %>">F2</div>
+            <div class="seat round <%= busyTables.includes('G2') ? 'busy' : '' %>">G2</div>
+            <div class="seat last-tables <%= busyTables.includes('H4') ? 'busy' : '' %>">H4</div>
            
           </div>
 
           <div class="kitchen">
             <div class="wra">
               <div>
-                <div class="seat middle">A4</div>
-                <div class="seat middle">B4</div>
-                <div class="seat middle">C4</div>
+                <div class="seat middle <%= busyTables.includes('A4') ? 'busy' : '' %>">A4</div>
+                <div class="seat middle <%= busyTables.includes('B4') ? 'busy' : '' %>">B4</div>
+                <div class="seat middle <%= busyTables.includes('C4') ? 'busy' : '' %>">C4</div>
               </div>
               <div class="hodnik"></div>
               
               <div>
-                <div class="seat middle">D4</div>
-                <div class="seat middle">F4</div>
-                <div class="seat middle">G4</div>
+                <div class="seat middle <%= busyTables.includes('D4') ? 'busy' : '' %>">D4</div>
+                <div class="seat middle <%= busyTables.includes('F4') ? 'busy' : '' %>">F4</div>
+                <div class="seat middle <%= busyTables.includes('G4') ? 'busy' : '' %>">G4</div>
                
                
               </div>
               <div class="hodnik"></div>
               <div>
-                <div class="seat middle">H4</div>
-                <div class="seat middle">I4</div>
-                <div class="seat middle">J4</div>
+                <div class="seat middle <%= busyTables.includes('H4') ? 'busy' : '' %>">H4</div>
+                <div class="seat middle <%= busyTables.includes('I4') ? 'busy' : '' %>">I4</div>
+                <div class="seat middle <%= busyTables.includes('J4') ? 'busy' : '' %>">J4</div>
                
               </div>
             </div>
             
             <div>
-              <div class="seat bar-chairs">A1</div>
-              <div class="seat bar-chairs">B1</div>
-              <div class="seat bar-chairs">C1</div>
-              <div class="seat bar-chairs">D1</div>
-              <div class="seat bar-chairs">E1</div>
-              <div class="seat bar-chairs">F1</div>
+              <div class="seat bar-chairs <%= busyTables.includes('A1') ? 'busy' : '' %>">A1</div>
+              <div class="seat bar-chairs <%= busyTables.includes('B1') ? 'busy' : '' %>">B1</div>
+              <div class="seat bar-chairs <%= busyTables.includes('C1') ? 'busy' : '' %>">C1</div>
+              <div class="seat bar-chairs <%= busyTables.includes('D1') ? 'busy' : '' %>">D1</div>
+              <div class="seat bar-chairs <%= busyTables.includes('E1') ? 'busy' : '' %>">E1</div>
+              <div class="seat bar-chairs <%= busyTables.includes('F1') ? 'busy' : '' %>">F1</div>
             </div>
             <div class="bar">BAR</div>
 
@@ -68,13 +68,13 @@
           
     
           <div class="row">
-            <div class="seat round">J2</div>
-            <div class="seat round">K2</div>
-            <div class="seat round">L2</div>
-            <div class="seat round">M2</div>
-            <div class="seat round">N2</div>
-            <div class="seat round">O2</div>
-            <div class="seat round">Q2</div>
+            <div class="seat round <%= busyTables.includes('J2') ? 'busy' : '' %>">J2</div>
+            <div class="seat round <%= busyTables.includes('K2') ? 'busy' : '' %>">K2</div>
+            <div class="seat round <%= busyTables.includes('L2') ? 'busy' : '' %>">L2</div>
+            <div class="seat round <%= busyTables.includes('M2') ? 'busy' : '' %>">M2</div>
+            <div class="seat round <%= busyTables.includes('N2') ? 'busy' : '' %>">N2</div>
+            <div class="seat round <%= busyTables.includes('O2') ? 'busy' : '' %>">O2</div>
+            <div class="seat round <%= busyTables.includes('Q2') ? 'busy' : '' %>">Q2</div>
           
           </div>
     

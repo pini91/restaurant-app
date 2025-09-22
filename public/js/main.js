@@ -6,6 +6,12 @@ Array.from(elements).forEach((el) => {
 })
 
 async function tableNumber () {
+  // Check if the table is busy (has the 'busy' class)
+  if (this.classList.contains('busy')) {
+    alert('This table is already reserved for your selected date and time. Please choose another table.')
+    return // Exit the function early
+  }
+
   const tableNum = this.innerText
   console.log(tableNum)
 
