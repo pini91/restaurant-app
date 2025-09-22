@@ -16,20 +16,57 @@ module.exports = {
 
     if (month < 10) { month = '0' + month.toString() }
     if (day < 10) { day = '0' + day.toString() }
-    // day = day
+
     const time = new Date().getTime()
     const d = new Date()
     d.setHours(0, 0, 0, 0)
 
     let maxDate = year + '-' + month + '-' + day
 
-    if (time >= 15 && time <= d) {
-      // day = day + 1
-      maxDate = year + '-' + month + '-' + (day + 1)
-      res.render('form.ejs', { currentDate: currMonth, maxDate })
+    // Generate available hours based on current time
+    const generateAvailableHours = () => {
+      const now = new Date()
+      const currentHour = now.getHours()
+      const currentMinutes = now.getMinutes()
+
+      // Restaurant hours (assuming 12 PM - 11 PM)
+      const restaurantHours = [
+        { display: '12:00', value: '12:00', hour24: 12 },
+        { display: '01:00', value: '01:00', hour24: 13 },
+        { display: '02:00', value: '02:00', hour24: 14 },
+        { display: '03:00', value: '03:00', hour24: 15 },
+        { display: '04:00', value: '04:00', hour24: 16 },
+        { display: '05:00', value: '05:00', hour24: 17 },
+        { display: '06:00', value: '06:00', hour24: 18 },
+        { display: '07:00', value: '07:00', hour24: 19 },
+        { display: '08:00', value: '08:00', hour24: 20 },
+        { display: '09:00', value: '09:00', hour24: 21 },
+        { display: '10:00', value: '10:00', hour24: 22 },
+        { display: '11:00', value: '11:00', hour24: 23 }
+      ]
+
+      // Filter hours: only show hours that are at least 1 hour from now
+      const availableHours = restaurantHours.filter(timeSlot => {
+        // If it's past 30 minutes in the current hour, add another hour buffer
+        if (currentMinutes > 30) {
+          return timeSlot.hour24 > currentHour + 1
+        } else {
+          return timeSlot.hour24 > currentHour
+        }
+      })
+
+      // If no hours available today, show all hours (for future dates)
+      return availableHours.length > 0 ? availableHours.map(h => h.value) : restaurantHours.map(h => h.value)
     }
 
-    res.render('form.ejs', { currentDate: currMonth, maxDate })
+    const availableHours = generateAvailableHours()
+
+    if (time >= 15 && time <= d) {
+      maxDate = year + '-' + month + '-' + (day + 1)
+      res.render('form.ejs', { currentDate: currMonth, maxDate, availableHours })
+    } else {
+      res.render('form.ejs', { currentDate: currMonth, maxDate, availableHours })
+    }
   },
 
   createReservation: async (req, res, next) => {

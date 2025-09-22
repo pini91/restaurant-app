@@ -34,13 +34,13 @@ body {
   border-spacing: 10em;
 }
 
-.seat.available {
+/* .seat.available {
   background-color: #6feaf6;
 }
 
 .seat.occupied {
   background-color: red;
-}
+} */
 
 /* Busy tables styling */
 .seat.busy {
