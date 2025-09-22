@@ -54,11 +54,11 @@ module.exports = {
     try {
       // GET THE USER INFORMATION FROM CURRENT SESION TO GET THE LATEST ID RESERVATION.
       // let newReservation = await Reservations.find({session:session}).sort({ createdAt: -1}).limit(1)
-      const reservationToEdit = await Reservations.find({ _id: req.user.reservationId })
+      const reservationToEdit = await Reservations.findOne({ _id: req.user.reservationId })
 
       // console.log(`NEW FROM RESERVATION ${newReservation}`)
 
-      console.log(`RESERVATION TO EDIT FROM EDIT TABLE ${reservationToEdit[0].id}`)
+      console.log(`RESERVATION TO EDIT FROM EDIT TABLE ${reservationToEdit.id}`)
 
       // GET ALL THE RESERVATIONS EXCEPT THE NEW ONE FOR COMPARISON TO DETERMINE BUSY TABLES
       const all = await Reservations.find({ _id: { $nin: req.user.reservationId } })
@@ -74,36 +74,56 @@ module.exports = {
       const tableNum = req.body.tableNumFromJSFile
       console.log(tableNum)
 
-      // if there is reservations other than the current; see if that table and table is busy
-      if (all.length) {
-        // console.log(all)
-        let result = false
+      // checking if the table is too small for the group
+      let tableGroup = tableNum.split('')
+      console.log(`Table split: ${tableGroup}`) // Debug: see the split result
 
-        for (const doc in all) {
-        //   console.log(`FROM ALL DOCS ${all[doc]}`)
-          if (all[doc].date === reservationToEdit[0].date && all[doc].hour === reservationToEdit[0].hour && all[doc].table === tableNum) {
-            // console.log(doc)
-            result = true
+      const tableCapacity = Number(tableGroup[1])
+      const partySize = reservationToEdit.partySize
+      const difference = Math.abs(tableCapacity - partySize)
+
+      console.log(`Table capacity: ${tableCapacity}`)
+      console.log(`Party size: ${partySize}`)
+      console.log(`Difference: ${difference}`)
+
+      tableGroup = difference > 1
+      console.log(`FROM TABLEGROUP (is table too small/big?): ${tableGroup}`)
+
+      if (tableGroup) {
+        console.log('Table is too small or too big for party size')
+        res.json('tooSmall')
+      } else {
+        // if there is reservations other than the current; see if that table and table is busy
+        if (all.length) {
+          // console.log(all)
+          let result = false
+
+          for (const doc in all) {
+          //   console.log(`FROM ALL DOCS ${all[doc]}`)
+            if (all[doc].date === reservationToEdit.date && all[doc].hour === reservationToEdit.hour && all[doc].table === tableNum) {
+              // console.log(doc)
+              result = true
+            }
           }
-        }
-        console.log(result)
+          console.log(result)
 
-        if (result) {
-          console.log('failed, table is busy')
-          res.json('failed')
+          if (result) {
+            console.log('failed, table is busy')
+            res.json('failed')
+          } else {
+            console.log('Table is NOT busy')
+            await Reservations.findOneAndUpdate({ _id: reservationToEdit.id }, {
+              table: tableNum
+            })
+            res.json('success')
+          }
         } else {
-          console.log('Table is NOT busy')
-          await Reservations.findOneAndUpdate({ _id: reservationToEdit[0].id }, {
+          console.log('This is the first reservation')
+          await Reservations.findOneAndUpdate({ _id: reservationToEdit.id }, { // TAKE A LOOK AT THIS
             table: tableNum
           })
           res.json('success')
         }
-      } else {
-        console.log('This is the first reservation')
-        await Reservations.findOneAndUpdate({ _id: reservationToEdit[0].id }, { // TAKE A LOOK AT THIS
-          table: tableNum
-        })
-        res.json('success')
       }
     } catch (err) {
       console.log(err)
