@@ -482,7 +482,8 @@ footer{
     } */
 
     #hours{
-        height: 50px;
+        height: 350px;
+        width: 100%;
     }
 
     footer{ 
@@ -594,14 +595,15 @@ footer{
     }
     #bottle{
         margin-top: 2%;
-        margin-left: 18%;
+        margin-left: 25%;
     }
     /* #bottle img{
         width:300px;
     } */
 
     #hours{
-        height: 50px;
+        height: 300px;
+        width: 100%;
     }
 
     footer{ 
