@@ -3,12 +3,29 @@ body{
 }
 
 button{
-    width: 70px;
-    height: 25px;
-    font-size: large;
-    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid transparent;
+    /* padding: .375rem .75rem; */
+    /* font-size: 1rem; */
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    color: #6c757d;
+    border-color: #6c757d;
   }
-  a{
+
+.button:hover, .homeButton:active{
+    /* color: #fff; */
+    background-color: #a2aab0;
+    border-color: #a2aab0;
+}
+
+.button:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(108 117 125 / 50%);
+}
+
+  
+a{
     text-decoration: none;
     color: black;
     font-family: 'Times New Roman', Times, serif;

@@ -1,9 +1,7 @@
 const validator = require('validator')
 const Reservations = require('../models/Reservation')
 const User = require('../models/User')
-// const table = require('./table');
 
-// app.set('trust proxy', 1)
 
 module.exports = {
 
@@ -52,7 +50,7 @@ module.exports = {
         email: req.body.email,
         password: req.body.password
       })
-      console.log(`FROM USER CREATE${user}`)
+      // console.log(`FROM USER CREATE${user}`)
 
       await Reservations.create({
         name: req.body.password,
@@ -100,11 +98,9 @@ module.exports = {
   },
 
   assignTable: async (req, res) => {
-    console.log(` THIS IS FROM ASSIGN TABLE${req.user}`)
-    // let galleta = req.cookies
-    // galleta = galleta['connect.sid']
-
-    // console.log(`FROM ASSIGNTABLE${req.user}`)
+    // console.log(` THIS IS FROM ASSIGN TABLE${req.user}`)
+  
+   
 
     try {
       // GET THE USER INFORMATION FROM CURRENT SESION TO GET THE LATEST ID RESERVATION.
@@ -119,26 +115,28 @@ module.exports = {
       const all = await Reservations.find({ userID: { $nin: req.user.id } })
 
       // console.log(`this is newReservation[0] ${newReservation[0]}`)
-      if (all.length) {
-        console.log(`FROM ALL ${all}`) // THIS WORKS WELL
-      } else {
-        console.log('all is empty')
-      }
+      // if (all.length) {
+      //   console.log(`FROM ALL ${all}`) // THIS WORKS WELL
+      // } else {
+      //   console.log('all is empty')
+      // }
 
       // taking the tableNum from the client side js and asigning it to tableNum variable
       const tableNum = req.body.tableNumFromJSFile
-      console.log(tableNum)
+      console.log(`FROM TABLENUM${tableNum}`)
 
       // checking if the table is too small for the group
-      const tableGroup = tableNum.split('')
+      let tableGroup = tableNum.split('')
 
-      if (Number(tableGroup) !== newReservation[0].partySize) {
+      tableGroup = Math.abs((Number(tableGroup)-newReservation[0].partySize))>1?false :true
+      console.log(`FROM TABLEGROUP${tableGroup}`)
+
+      if (tableGroup) {
         res.json('tooSmall')
-      }
-
-      // if there is reservations other than the current; see if that table and table is busy
+      }else{
+        // if there is reservations other than the current; see if that table and table is busy
       if (all.length) {
-        console.log(all)
+        // console.log(all)
         let result = false
 
         for (const doc in all) {
@@ -150,7 +148,7 @@ module.exports = {
         }
         console.log(result)
 
-        if (result) {
+        if (result || Number(tableGroup) !== newReservation[0].partySize) {
           console.log('failed, table is busy')
           res.json('failed')
         } else {
@@ -167,6 +165,40 @@ module.exports = {
         })
         res.json('success')
       }
+        
+      }
+
+      // // if there is reservations other than the current; see if that table and table is busy
+      // if (all.length) {
+      //   // console.log(all)
+      //   let result = false
+
+      //   for (const doc in all) {
+      //     //   console.log(`FROM ALL DOCS ${all[doc]}`)
+      //     if (all[doc].date === newReservation[0].date && all[doc].hour === newReservation[0].hour && all[doc].table === tableNum) {
+      //       // console.log(doc)
+      //       result = true
+      //     }
+      //   }
+      //   console.log(result)
+
+      //   if (result || Number(tableGroup) !== newReservation[0].partySize) {
+      //     console.log('failed, table is busy')
+      //     res.json('failed')
+      //   } else {
+      //     console.log('Table is NOT busy')
+      //     await Reservations.findOneAndUpdate({ _id: newReservation[0].id }, { // TAKE A LOOK AT THIS
+      //       table: tableNum
+      //     })
+      //     res.json('success')
+      //   }
+      // } else {
+      //   console.log('This is the first reservation')
+      //   await Reservations.findOneAndUpdate({ _id: newReservation[0].id }, { // TAKE A LOOK AT THIS
+      //     table: tableNum
+      //   })
+      //   res.json('success')
+      // }
     } catch (err) {
       console.log(err)
     }
