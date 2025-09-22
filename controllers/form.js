@@ -122,7 +122,7 @@ module.exports = {
       const tableNum = req.body.tableNumFromJSFile
       console.log(`FROM TABLENUM ${tableNum}`)
 
-      // checking if the table is too small for the group
+      // checking if the table is too small or too big for the group
       let tableGroup = tableNum.split('')
       console.log(`Table split: ${tableGroup}`) // Debug: see the split result
 
@@ -134,10 +134,9 @@ module.exports = {
       console.log(`Party size: ${partySize}`)
       console.log(`Difference: ${difference}`)
 
-      tableGroup = difference > 1
       console.log(`FROM TABLEGROUP (is table too small/big?): ${tableGroup}`)
 
-      if (tableGroup) {
+      if (tableGroup || tableCapacity<partySize) {
         console.log('Table is too small or too big for party size')
         res.json('tooSmall')
       } else {
