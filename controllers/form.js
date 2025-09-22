@@ -29,6 +29,8 @@ module.exports = {
       const currentHour = now.getHours()
       const currentMinutes = now.getMinutes()
 
+      console.log(`Current time: ${currentHour}:${currentMinutes} (${currentHour} in 24h format)`)
+
       // Restaurant hours (assuming 12 PM - 11 PM)
       const restaurantHours = [
         { display: '12:00', value: '12:00', hour24: 12 },
@@ -49,11 +51,17 @@ module.exports = {
       const availableHours = restaurantHours.filter(timeSlot => {
         // If it's past 30 minutes in the current hour, add another hour buffer
         if (currentMinutes > 30) {
-          return timeSlot.hour24 > currentHour + 1
+          const result = timeSlot.hour24 > currentHour + 1
+          console.log(`${timeSlot.display} (hour24: ${timeSlot.hour24}) > ${currentHour + 1}? ${result}`)
+          return result
         } else {
-          return timeSlot.hour24 > currentHour
+          const result = timeSlot.hour24 > currentHour
+          console.log(`${timeSlot.display} (hour24: ${timeSlot.hour24}) > ${currentHour}? ${result}`)
+          return result
         }
       })
+
+      console.log('Available hours:', availableHours.map(h => h.value))
 
       // If no hours available today, show all hours (for future dates)
       return availableHours.length > 0 ? availableHours.map(h => h.value) : restaurantHours.map(h => h.value)
