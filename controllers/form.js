@@ -120,13 +120,13 @@ module.exports = {
 
       // taking the tableNum from the client side js and asigning it to tableNum variable
       const tableNum = req.body.tableNumFromJSFile
-      console.log(`FROM TABLENUM${tableNum}`)
+      console.log(`FROM TABLENUM ${tableNum}`)
 
       // checking if the table is too small for the group
       let tableGroup = tableNum.split('')
 
-      tableGroup = !(Math.abs((Number(tableGroup) - newReservation[0].partySize)) > 1)
-      console.log(`FROM TABLEGROUP${tableGroup}`)
+      tableGroup = Math.abs((Number(tableGroup) - newReservation[0].partySize)) > 1
+      console.log(`FROM TABLEGROUP ${tableGroup}`)
 
       if (tableGroup) {
         res.json('tooSmall')
