@@ -124,14 +124,21 @@ module.exports = {
 
       // checking if the table is too small for the group
       let tableGroup = tableNum.split('')
+      console.log(`Table split: ${tableGroup}`) // Debug: see the split result
 
-      const result = Math.abs((Number(tableGroup[1]) - newReservation[0].partySize))
-      console.log(`FROM RESULT ${result}`)
+      const tableCapacity = Number(tableGroup[1])
+      const partySize = newReservation[0].partySize
+      const difference = Math.abs(tableCapacity - partySize)
 
-      tableGroup = Math.abs((Number(tableGroup[1]) - newReservation[0].partySize)) > 1
-      console.log(`FROM TABLEGROUP ${tableGroup}`)
+      console.log(`Table capacity: ${tableCapacity}`)
+      console.log(`Party size: ${partySize}`)
+      console.log(`Difference: ${difference}`)
+
+      tableGroup = difference > 1
+      console.log(`FROM TABLEGROUP (is table too small/big?): ${tableGroup}`)
 
       if (tableGroup) {
+        console.log('Table is too small or too big for party size')
         res.json('tooSmall')
       } else {
         // if there is reservations other than the current; see if that table and table is busy
