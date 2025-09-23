@@ -35,19 +35,28 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('Cleared hours select')
 
     const hours = []
+
+    // Restaurant hours: 12 PM (12) to 11 PM (23)
+    const restaurantStart = 12
+    const restaurantEnd = 23
+
     if (selectedDate.getTime() === today.getTime()) {
-    // Only show hours left today (example: from current hour + 1 to 23)
+      // TODAY: Only show remaining hours (current hour + 1 to 11 PM)
+      console.log('Selected date is TODAY')
       const now = new Date()
-      const startHour = now.getHours() + 1
-      for (let i = startHour; i <= 23; i++) {
+      const currentHour = now.getHours()
+      const startHour = Math.max(restaurantStart, currentHour + 1) // Don't go below 12 PM
+
+      for (let i = startHour; i <= restaurantEnd; i++) {
         const hour12 = i % 12 === 0 ? 12 : i % 12
         const ampm = i < 12 ? 'AM' : 'PM'
         const label = `${String(hour12).padStart(2, '0')}:00 ${ampm}`
         hours.push(label)
       }
     } else {
-    // Show all hours for other days (12:00 PM to 11:00 PM)
-      for (let i = 12; i <= 23; i++) {
+      // FUTURE DATES: Show all restaurant hours (12 PM to 11 PM)
+      console.log('Selected date is FUTURE')
+      for (let i = restaurantStart; i <= restaurantEnd; i++) {
         const hour12 = i % 12 === 0 ? 12 : i % 12
         const ampm = i < 12 ? 'AM' : 'PM'
         const label = `${String(hour12).padStart(2, '0')}:00 ${ampm}`
