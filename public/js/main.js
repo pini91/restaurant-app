@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const datePicker = document.getElementById('date')
   const hoursSelect = document.getElementById('hoursSelect')
 
-  // Add this block to set the default date and trigger the hours update
+  // This block sets the default date and trigger the hours update
   if (!datePicker.value) {
     // If the date field is empty, set it to today
     const todayDateStr = new Date().toISOString().slice(0, 10)
