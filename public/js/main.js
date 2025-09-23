@@ -25,10 +25,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   datePicker.addEventListener('change', function () {
     console.log('Date changed to:', this.value)
-    const selectedDate = new Date(this.value)
-    const today = new Date()
-    selectedDate.setHours(0, 0, 0, 0)
-    today.setHours(0, 0, 0, 0)
+    const selectedDateStr = this.value // Keep as string: "2025-09-23"
+    const todayStr = new Date().toISOString().slice(0, 10) // Today as string: "2025-09-23"
+
+    console.log('Selected date string:', selectedDateStr)
+    console.log('Today string:', todayStr)
 
     // Clear previous options except the hidden placeholder
     hoursSelect.innerHTML = '<option value="" disabled selected>Hour</option>'
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const restaurantStart = 12
     const restaurantEnd = 23
 
-    if (selectedDate.getTime() === today.getTime()) {
+    if (selectedDateStr === todayStr) {
       // TODAY: Only show remaining hours (current hour + 1 to 11 PM)
       console.log('Selected date is TODAY')
       const now = new Date()
