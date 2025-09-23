@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
   datePicker.dispatchEvent(new Event('change'))
 
   datePicker.addEventListener('change', function () {
+    console.log('Date changed to:', this.value)
     const selectedDate = new Date(this.value)
     const today = new Date()
     selectedDate.setHours(0, 0, 0, 0)
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Clear previous options except the hidden placeholder
     hoursSelect.innerHTML = '<option value="" disabled selected>Hour</option>'
+    console.log('Cleared hours select')
 
     const hours = []
     if (selectedDate.getTime() === today.getTime()) {
@@ -43,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Add options to the select
+    console.log('Adding hours:', hours)
     hours.forEach(hour => {
       const option = document.createElement('option')
       option.value = hour
