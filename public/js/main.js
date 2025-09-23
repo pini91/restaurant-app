@@ -1,27 +1,43 @@
-// Assuming you have an input with id "datePicker" and a div with id "hoursDisplay"
 const datePicker = document.getElementById('date')
-const hoursDisplay = document.getElementById('hoursDisplay')
+const hoursSelect = document.getElementById('hoursSelect')
 
 datePicker.addEventListener('change', function () {
   const selectedDate = new Date(this.value)
   const today = new Date()
-
-  // Reset time components for accurate date comparison
   selectedDate.setHours(0, 0, 0, 0)
   today.setHours(0, 0, 0, 0)
 
+  // Clear previous options except the hidden placeholder
+  hoursSelect.innerHTML = '<option hidden required>Hour</option>'
+
+  const hours = []
   if (selectedDate.getTime() === today.getTime()) {
-    // If selected date is today, display current hours
-    let hoursHtml = '<h3>Available Hours Today:</h3><ul>'
-    for (let i = 0; i < 24; i++) {
-      hoursHtml += `<li>${String(i).padStart(2, '0')}:00</li>`
+    // Only show hours left today (example: from current hour + 1 to 23)
+    const now = new Date()
+    const startHour = now.getHours() + 1
+    for (let i = startHour; i <= 23; i++) {
+      const hour12 = i % 12 === 0 ? 12 : i % 12
+      const ampm = i < 12 ? 'AM' : 'PM'
+      const label = `${String(hour12).padStart(2, '0')}:00 ${ampm}`
+      hours.push(label)
     }
-    hoursHtml += '</ul>'
-    hoursDisplay.innerHTML = hoursHtml
   } else {
-    // If not today, clear or display different message
-    hoursDisplay.innerHTML = '<option>12:00</option> <br> <option>01:00</option> <br> <option>02:00</option> <br> <option>03:00</option> <br> <option>04:00</option> <br> <option>05:00</option> <br> <option>06:00</option> <br> <option>07:00</option> <br>'
+    // Show all hours for other days (12:00 PM to 11:00 PM)
+    for (let i = 12; i <= 23; i++) {
+      const hour12 = i % 12 === 0 ? 12 : i % 12
+      const ampm = i < 12 ? 'AM' : 'PM'
+      const label = `${String(hour12).padStart(2, '0')}:00 ${ampm}`
+      hours.push(label)
+    }
   }
+
+  // Add options to the select
+  hours.forEach(hour => {
+    const option = document.createElement('option')
+    option.value = hour
+    option.textContent = hour
+    hoursSelect.appendChild(option)
+  })
 })
 
 // Get all elements with the class "seat"

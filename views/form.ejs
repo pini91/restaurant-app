@@ -38,15 +38,9 @@
           </div>
           <div class="column">
             <div class="select-box ">
-              <select name="hours">
-                  <h1>Select Time</h1>
-                  <div id="hoursDisplay">
-                      <!-- Hours will be displayed here by JavaScript -->
-                  </div>
-                <!-- <option hidden required>Hour</option> 
-                <% availableHours.forEach(hour => { %>
-                  <option value="<%= hour %>"><%= hour %></option>
-                <% }) %> -->
+              <select name="hours" id="hoursSelect">
+                <option hidden required>Hour</option>
+                <!-- Options will be dynamically inserted by JS -->
               </select>
             </div>
           </div>
