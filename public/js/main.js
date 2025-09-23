@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     today.setHours(0, 0, 0, 0)
 
     // Clear previous options except the hidden placeholder
-    hoursSelect.innerHTML = '<option hidden required>Hour</option>'
+    hoursSelect.innerHTML = '<option value="" disabled selected>Hour</option>'
 
     const hours = []
     if (selectedDate.getTime() === today.getTime()) {
