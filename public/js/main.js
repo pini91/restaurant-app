@@ -1,15 +1,26 @@
 document.addEventListener('DOMContentLoaded', function () {
+  console.log('DOMContentLoaded fired')
   const datePicker = document.getElementById('date')
   const hoursSelect = document.getElementById('hoursSelect')
+
+  console.log('datePicker element:', datePicker)
+  console.log('hoursSelect element:', hoursSelect)
+
+  if (!datePicker || !hoursSelect) {
+    console.error('Required elements not found!')
+    return
+  }
 
   // This block sets the default date and trigger the hours update
   if (!datePicker.value) {
     // If the date field is empty, set it to today
     const todayDateStr = new Date().toISOString().slice(0, 10)
     datePicker.value = todayDateStr
+    console.log('Set default date to:', todayDateStr)
   }
 
   // Trigger 'change' on load to populate hours if the field's value is set
+  console.log('Triggering change event')
   datePicker.dispatchEvent(new Event('change'))
 
   datePicker.addEventListener('change', function () {
