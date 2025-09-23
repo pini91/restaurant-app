@@ -1,3 +1,29 @@
+// Assuming you have an input with id "datePicker" and a div with id "hoursDisplay"
+const datePicker = document.getElementById('date')
+const hoursDisplay = document.getElementById('hoursDisplay')
+
+datePicker.addEventListener('change', function () {
+  const selectedDate = new Date(this.value)
+  const today = new Date()
+
+  // Reset time components for accurate date comparison
+  selectedDate.setHours(0, 0, 0, 0)
+  today.setHours(0, 0, 0, 0)
+
+  if (selectedDate.getTime() === today.getTime()) {
+    // If selected date is today, display current hours
+    let hoursHtml = '<h3>Available Hours Today:</h3><ul>'
+    for (let i = 0; i < 24; i++) {
+      hoursHtml += `<li>${String(i).padStart(2, '0')}:00</li>`
+    }
+    hoursHtml += '</ul>'
+    hoursDisplay.innerHTML = hoursHtml
+  } else {
+    // If not today, clear or display different message
+    hoursDisplay.innerHTML = '<option>12:00</option> <br> <option>01:00</option> <br> <option>02:00</option> <br> <option>03:00</option> <br> <option>04:00</option> <br> <option>05:00</option> <br> <option>06:00</option> <br> <option>07:00</option> <br>'
+  }
+})
+
 // Get all elements with the class "seat"
 const elements = document.getElementsByClassName('seat')
 

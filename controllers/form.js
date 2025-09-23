@@ -68,6 +68,7 @@ module.exports = {
     }
 
     const availableHours = generateAvailableHours()
+    console.log('Final available hours passed to view:', availableHours)
 
     if (time >= 15 && time <= d) {
       maxDate = year + '-' + month + '-' + (day + 1)
