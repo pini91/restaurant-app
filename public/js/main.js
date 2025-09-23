@@ -23,9 +23,10 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log('Triggering change event')
   datePicker.dispatchEvent(new Event('change'))
 
-  datePicker.addEventListener('change', function () {
-    console.log('Date changed to:', this.value)
-    const selectedDateStr = this.value // Keep as string: "2025-09-23"
+  // Function to handle date selection (both change and click)
+  function handleDateSelection () {
+    console.log('Date changed to:', datePicker.value)
+    const selectedDateStr = datePicker.value // Keep as string: "2025-09-23"
     const todayStr = new Date().toISOString().slice(0, 10) // Today as string: "2025-09-23"
 
     console.log('Selected date string:', selectedDateStr)
@@ -73,7 +74,11 @@ document.addEventListener('DOMContentLoaded', function () {
       option.textContent = hour
       hoursSelect.appendChild(option)
     })
-  })
+  }
+
+  // Add both event listeners
+  datePicker.addEventListener('change', handleDateSelection)
+  datePicker.addEventListener('click', handleDateSelection)
 
   // Get all elements with the class "seat"
   const elements = document.getElementsByClassName('seat')
