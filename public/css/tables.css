@@ -275,11 +275,12 @@ a{
 
   .hodnik{
     display:none ;
-
   }
+  
   .contenedor{
-    height:670px;
+    height:720px;
   }
+
   .form .column {
     flex-wrap: wrap;
   }
