@@ -72,7 +72,7 @@ module.exports = {
             from: 'testingmyaps@gmail.com',
             to: response[0].email,
             subject: 'RESTAURANT RESERVATION ✔',
-            text: `Hello ${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase()}!\n\nYour reservation number at Health and Taste for ${response[0].date}, in table: ${response[0].table} at ${response[0].hour} is: ${response[0].id}.\n\nTo edit or delete your reservation click the link below:\n\nhttp://health-and-taste.up.railway.app/edit`
+            text: `Hello ${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase()}!\n\nYour reservation number at Health and Taste for ${response[0].date}, in table: ${response[0].table} at ${response[0].hour} is: ${response[0].id}.\n\nTo edit or delete your reservation click the link below:\n\nhttps://health-and-taste.up.railway.app/edit`
           })
 
           console.log('Message sent: %s', info.messageId)
