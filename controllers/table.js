@@ -1,5 +1,5 @@
-import FormData from 'form-data' // form-data v4.0.1
-import Mailgun from 'mailgun.js' // mailgun.js v11.1.0
+const FormData = require('form-data') // form-data v4.0.1
+const Mailgun = require('mailgun.js') // mailgun.js v11.1.0
 
 const Reservation = require('../models/Reservation')
 
