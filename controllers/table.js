@@ -71,7 +71,8 @@ module.exports = {
           subject: 'RESTAURANT RESERVATION ✔',
           text: `Hello ${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLocaleLowerCase()}!, 
               Your reservation number at Health and Taste for ${response[0].date}, in table: ${response[0].table} at ${response[0].hour} is: ${response[0].id}.
-              To edit or delete your reservation go to<br>: https://health-and-taste.up.railway.app//edit` // plain text body,
+              To edit or delete your reservation go to: 
+              https://health-and-taste.up.railway.app/edit` // plain text body,
         })
 
         console.log(data)
