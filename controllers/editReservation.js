@@ -1,6 +1,6 @@
 const Reservations = require('../models/Reservation')
 const User = require('../models/User')
-const nodemailer = require('nodemailer')
+// const nodemailer = require('nodemailer')
 
 module.exports = {
   getEdit: (req, res) => {
@@ -161,31 +161,31 @@ module.exports = {
       //   res.render("final.ejs", {name: response[0].name[0].toUpperCase()+response[0].name.slice(1).toLocaleLowerCase(), id: response[0].id})
 
       // FUNCTION FOR THE EMAIL RESERVATION
-      async function main () {
-        // create reusable transporter object using the default SMTP transport
-        const transporter = nodemailer.createTransport({
-          host: 'smtp-relay.brevo.com',
-          secure: false, // true for 465, false for other ports
-          auth: {
-            user: process.env.EMAIL_USER, // generated brevo user
-            pass: process.env.EMAIL_PASS // fixed environment variable name
-          }
-        })
+      // async function main () {
+      //   // create reusable transporter object using the default SMTP transport
+      //   const transporter = nodemailer.createTransport({
+      //     host: 'smtp-relay.brevo.com',
+      //     secure: false, // true for 465, false for other ports
+      //     auth: {
+      //       user: process.env.EMAIL_USER, // generated brevo user
+      //       pass: process.env.EMAIL_PASS // fixed environment variable name
+      //     }
+      //   })
 
-        // send mail with defined transport object
-        const info = await transporter.sendMail({
-          from: 'testingmyaps@gmail.com', // sender address
-          to: `${response[0].email}`, // receiver
-          subject: 'RESTAURANT RESERVATION ✔', // Subject line
-          text: `Hello ${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase()} , You have changed your reservation. Your reservation number at Health and Taste for ${response[0].date} in table: ${response[0].table} at ${response[0].hour} is: ${response[0].id} to edit or delete your reservation go to: https://health-and-taste.up.railway.app/edit `
-        })
+      //   // send mail with defined transport object
+      //   const info = await transporter.sendMail({
+      //     from: 'testingmyaps@gmail.com', // sender address
+      //     to: `${response[0].email}`, // receiver
+      //     subject: 'RESTAURANT RESERVATION ✔', // Subject line
+      //     text: `Hello ${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLowerCase()} , You have changed your reservation. Your reservation number at Health and Taste for ${response[0].date} in table: ${response[0].table} at ${response[0].hour} is: ${response[0].id} to edit or delete your reservation go to: https://health-and-taste.up.railway.app/edit `
+      //   })
 
-        console.log('Message sent: %s', info.messageId)
-        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-        // console.log(response[0].email)
-      }
+      //   console.log('Message sent: %s', info.messageId)
+      //   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+      //   // console.log(response[0].email)
+      // }
 
-      main().catch(console.error)
+      // main().catch(console.error)
 
       req.flash('info', 'An email has been sent with further instructions.')
 
