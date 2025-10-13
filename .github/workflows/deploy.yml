@@ -37,15 +37,10 @@ jobs:
           ref: ${{ github.event.workflow_run.head_sha }}
           # Ensures we deploy the exact code that triggered the workflow
 
-      - name: Install Railway CLI
-        run: |
-          curl -fsSL https://railway.app/install.sh | sh
-          echo "$HOME/.railway/bin" >> $GITHUB_PATH
-
       - name: Deploy to Railway (Dev)
-        run: |
-          railway whoami
-          railway deploy
+        uses: bervProject/railway-deploy@main
+        with:
+          service: "nodejs"
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_DEV }}
 
@@ -95,15 +90,10 @@ jobs:
           ref: ${{ github.event.workflow_run.head_sha }}
           # Ensures we deploy the exact code that triggered the workflow
 
-      - name: Install Railway CLI
-        run: |
-          curl -fsSL https://railway.app/install.sh | sh
-          echo "$HOME/.railway/bin" >> $GITHUB_PATH
-
       - name: Deploy to Railway (Prod)
-        run: |
-          railway whoami
-          railway deploy
+        uses: bervProject/railway-deploy@main
+        with:
+          service: "nodejs"
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_PROD }}
 
