@@ -44,7 +44,7 @@ jobs:
 
       - name: Deploy to Railway (Dev)
         run: |
-          railway up --detach
+          railway up --detach --service nodejs
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_DEV }}
 
@@ -101,7 +101,7 @@ jobs:
 
       - name: Deploy to Railway (Prod)
         run: |
-          railway up --detach
+          railway up --detach --service nodejs
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_PROD }}
 
