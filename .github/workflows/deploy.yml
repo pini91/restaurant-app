@@ -44,6 +44,8 @@ jobs:
 
       - name: Deploy to Railway (Dev)
         run: |
+          railway login --token $RAILWAY_TOKEN
+          railway link
           railway deploy
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_DEV }}
@@ -101,6 +103,8 @@ jobs:
 
       - name: Deploy to Railway (Prod)
         run: |
+          railway login --token $RAILWAY_TOKEN
+          railway link
           railway deploy
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN_PROD }}
