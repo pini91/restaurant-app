@@ -51,7 +51,6 @@
     "mongodb": "^6.9.0",
     "mongoose": "^8.16.1",
     "morgan": "^1.10.0",
-    "nodemailer": "^7.0.6",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "save": "^2.9.0",
