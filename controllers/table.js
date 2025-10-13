@@ -65,8 +65,8 @@ module.exports = {
         // url: "https://api.eu.mailgun.net"
       })
       try {
-        const data = await mg.messages.create('brenda-app.dev', {
-          from: 'Mailgun Sandbox <postmaster@brenda-app.dev>',
+        const data = await mg.messages.create(process.env.SAND_BOX_DOMAIN, {
+          from: process.env.SAND_BOX_DOMAIN,
           to: `${response[0].email}`,
           subject: 'RESTAURANT RESERVATION ✔',
           text: `Hello ${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLocaleLowerCase()}!, 
