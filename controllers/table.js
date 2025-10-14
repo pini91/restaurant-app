@@ -66,7 +66,7 @@ module.exports = {
       })
       try {
         const data = await mg.messages.create('brenda-app.dev', {
-          from: 'Mailgun Sandbox <postmaster@brenda-app.dev>',
+          from: 'Health and Taste <postmaster@brenda-app.dev>',
           to: `${response[0].email}`,
           subject: 'RESTAURANT RESERVATION ✔',
           text: `Hello ${response[0].name[0].toUpperCase() + response[0].name.slice(1).toLocaleLowerCase()}!, 
