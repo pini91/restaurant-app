@@ -28,7 +28,7 @@
           <div class="column">
             <div class="input-box">
               <label for="phoneNumber">Phone Number</label>
-              <input type="tel" pattern="[0-9]{10}" onInput="if(this.value.length>10) this.value=this.value.slice(0,10);" id="phoneNumber" name="phoneNumber" placeholder="Enter phone" title="Ten digits code" required />
+              <input type="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" id="phoneNumber" name="phoneNumber" placeholder="Enter phone" title="Ten digits code" required />
             </div>
             <div class="input-box">
               <label for="date">Date</label>
